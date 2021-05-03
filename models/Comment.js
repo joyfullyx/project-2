@@ -11,7 +11,7 @@ User.init({
     user_id:{
         type:DataTypes.STRING,
         allowNull:false,
-    }
+    },
     card_id:{
         type:DataTypes.STRING,
         allowNull:false,

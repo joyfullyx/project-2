@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     const categoryData = await Category.findAll({
       include: [
         {
-          model: User,
+          include: User,
           attributes: ['name'],
         },
       ],
@@ -18,10 +18,7 @@ router.get('/', async (req, res) => {
     const category = categoryData.map((category) => category.get({ plain: true }));
 
     // Pass serialized data and session flag into template
-    res.render('homepage', { 
-      categories, 
-      logged_in: req.session.logged_in 
-    });
+    res.render('homepage', category);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -54,8 +51,9 @@ router.get('/profile', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Category }],
+      attributes: { 
+        exclude: ['password'] 
+      },
     });
 
     const user = userData.get({ plain: true });

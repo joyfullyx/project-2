@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 
 class Comment extends Model {}
 
-User.init({
+Comment.init({
     content:{
         type:DataTypes.STRING(255),
     },

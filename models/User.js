@@ -56,4 +56,4 @@ User.init(
 );
 
 // TODO: import User to models > index.js later
-module.exports = { User };
+module.exports =  User 

@@ -6,18 +6,23 @@ class Comment extends Model {}
 
 Comment.init({
     content:{
-        type:DataTypes.STRING(255),
+        type:DataTypes.STRING,
     },
     user_id:{
-        type:DataTypes.STRING,
+        type:DataTypes.INTEGER, 
         allowNull:false,
     },
     card_id:{
-        type:DataTypes.STRING,
+        type:DataTypes.INTEGER,
         allowNull:false,
     }
-},{
-    sequelize
-})
+},
+{
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'comment',
+});
 
 module.exports = Comment

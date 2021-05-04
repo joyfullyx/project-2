@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Category, Card } = require('../models');
+const { User, Category, Card, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -11,7 +11,26 @@ router.get('/', async (req, res) => {
     const card = cardData.map((card) => card.get({ plain: true }));
 
     // Pass serialized data and session flag into template
-    res.render('homepage', card);
+    res.render('homepage', {card});
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+});
+
+router.get('/cards/:id', async (req, res) => {
+  try {
+    const cardData = await Card.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          model: Comment,
+        },
+      ],
+    });
+    const card = cardData.get({ plain: true });
+
+    res.render('viewcard', {...card});
   } catch (err) {
     res.status(500).json(err);
     console.log(err);

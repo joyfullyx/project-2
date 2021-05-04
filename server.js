@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+//var geoip = require('geoip-lite');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');

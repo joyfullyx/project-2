@@ -16,7 +16,12 @@ Card.init(
           allowNull: false,
         },
         event_des: {
+          type: DataTypes.TEXT,
+          allowNull: true,
+        },
+        event_location: {
           type: DataTypes.STRING,
+          allowNull: true,
         },
         event_date: {
           type: DataTypes.DATE,
@@ -28,7 +33,7 @@ Card.init(
             allowNull: false,
             default: '06:00'
         },
-        category_id: {
+        categories_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'category',
@@ -52,4 +57,4 @@ Card.init(
       }
     );
     
-    module.exports = Card
+    module.exports = Card;

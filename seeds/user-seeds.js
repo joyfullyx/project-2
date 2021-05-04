@@ -58,7 +58,7 @@ const userData = [
     city: 'Olympia',
     state: 'WA',
     zip: 98501,
-    email: 'kmenendez@example.com',
+    email: 'hopegao@example.com',
     password: 'password'
   },
   {
@@ -101,4 +101,4 @@ const userData = [
 
 const seedUser = () => User.bulkCreate(userData);
 
-module.exports = userCard;
+module.exports = seedUser;

@@ -5,22 +5,26 @@ const Card = require('./Card');
 
 User.hasMany(Card, {
     foreignKey: 'user_id',
-    onDelete: 'CASCADE'
+    onDelete: 'CASCADE',
 });
 
+Card.belongsTo(User, {
+    foreignKey: 'user_id',
+})
+
 Category.hasMany(Card, {
-    foreign: 'category_id',
-    onDelete: 'CASCADE'
+    foreignKey: 'category_id',
+    onDelete: 'CASCADE',
 });
 
 User.hasMany(Comment, {
-    foreign: 'user_id',
-    onDelete: 'CASCADE'
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE',
 });
 
 Card.hasMany(Comment, {
-    foreign: 'card_id',
-    onDelete: 'CASCADE'
+    foreignKey: 'card_id',
+    onDelete: 'CASCADE',
 });
 
 module.exports = {

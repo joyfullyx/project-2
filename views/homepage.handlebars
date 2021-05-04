@@ -2,16 +2,9 @@
 
 {{#each card}}
     <div class="card">
-        <a href="/entry/{{id}}"><h3>{{event_name}}</h3></a>
+        <a href="/cards/{{id}}"><h3>{{event_name}}</h3></a>
         <p>{{event_des}}</p>
         <h6>{{event_date}}</h6>
         <h6>{{event_time}}</h6>
-
-        
-        <form id="newCommentForm">
-            <textarea id="newComment" placeholder="Add a Comment"></textarea>
-            <button>Add Comment</button>
-        </form>
-        <button class="entryDelBtn" data-id={{id}}>Delete</button>
     </div>
 {{/each}}

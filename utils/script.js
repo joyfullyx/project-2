@@ -25,7 +25,7 @@ document.querySelector("#loginForm").addEventListener("submit",event=>{
 document.querySelector("#signupForm").addEventListener("submit",event=>{
     event.preventDefault();
     const fetchObj = {
-        name:document.querySelector("#signupUsername").value,
+        username:document.querySelector("#signupUsername").value,
         email:document.querySelector("#signupEmail").value,
         password:document.querySelector("#signupPassword").value,
     }

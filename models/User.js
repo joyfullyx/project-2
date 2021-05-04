@@ -20,13 +20,18 @@ User.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    first_name: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
+    },
+    first_name: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     last_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     organization: {
       type: DataTypes.STRING,

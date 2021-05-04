@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
     const card = cardData.map((card) => card.get({ plain: true }));
 
     // Pass serialized data and session flag into template
-    res.render('homepage', card);
+    res.render('homepage', {card});
   } catch (err) {
     res.status(500).json(err);
     console.log(err);

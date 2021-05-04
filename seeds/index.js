@@ -1,27 +1,26 @@
+const seedCategories = require('./category-seeds');
+const seedCards = require('./card-seeds');
+const seedComments = require('./comments-seeds');
+const seedUser = require('./user-seeds');
+
 const sequelize = require('../config/connection');
-const { User, Card, Category, Comment } = require('../models');
 
-const userData = require('./userData.json');
-const cardData = require('./cardData.json');
-const categoryData = require('./categoryData.json');
-const commentData = require('./commentData.json');
-
-const seedDatabase = async () => {
+const seedAll = async () => {
   await sequelize.sync({ force: true });
+  console.log('\n----- DATABASE SYNCED -----\n');
+  await seedCategories();
+  console.log('\n----- CATEGORIES SEEDED -----\n');
 
-  const users = await User.bulkCreate(userData, {
-    individualHooks: true,
-    returning: true,
-  });
+  await seedCards();
+  console.log('\n----- CARDS SEEDED -----\n');
 
-  for (const card of cardData) {
-    await Card.create({
-      ...card,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
-    });
-  }
+  await seedComments();
+  console.log('\n----- COMMENTS SEEDED -----\n');
+
+  await seedUser();
+  console.log('\n----- USERS SEEDED -----\n');
 
   process.exit(0);
 };
 
-seedDatabase();
+seedAll();

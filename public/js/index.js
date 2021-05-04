@@ -28,6 +28,7 @@ document.querySelector("#signupForm").addEventListener("submit",event=>{
         username:document.querySelector("#signupUsername").value,
         email:document.querySelector("#signupEmail").value,
         password:document.querySelector("#signupPassword").value,
+        zip:parseInt(document.querySelector("#signupZip").value),
     }
     console.log(fetchObj);
     fetch("/api/users",{

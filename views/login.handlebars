@@ -15,22 +15,4 @@
     <button>Signup</button>
 </form>
 
-<script src="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
-
-<script src="js/index.js">
-
-mapboxgl.accessToken =
-  "pk.eyJ1IjoianZwcm9maXRzMjgiLCJhIjoiY2tuMjRzdmg4MTQ5cTJubW94bW41MzlnNyJ9.jM6FpByBc8lm0jphn2EQKw";
-
-function getApi(options) {
-  var mapApi = `https://api.mapbox.com/geocoding/v5`;
-}
-
-window.navigator.geolocation.getCurrentPosition(function (position) {
-  map.flyTo({
-    center: [position.coords.longitude, position.coords.latitude],
-    zoom: 11,
-  });
-});
-
-</script>
+<script src="js/index.js"></script>

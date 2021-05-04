@@ -6,7 +6,7 @@ class Comment extends Model {}
 
 Comment.init({
     content:{
-        type:DataTypes.STRING(255),
+        type:DataTypes.TEXT,
     },
     user_id:{
         type:DataTypes.INTEGER, 

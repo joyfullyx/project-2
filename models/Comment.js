@@ -16,8 +16,13 @@ Comment.init({
         type:DataTypes.INTEGER,
         allowNull:false,
     }
-},{
-    sequelize
-})
+},
+{
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'comment',
+});
 
 module.exports = Comment

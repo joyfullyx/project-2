@@ -18,6 +18,9 @@ Card.init(
         event_des: {
           type: DataTypes.STRING,
         },
+        event_location: {
+          type: DataTypes.STRING,
+        },
         event_date: {
           type: DataTypes.DATE,
           allowNull: false,

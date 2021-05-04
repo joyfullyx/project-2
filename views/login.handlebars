@@ -1,0 +1,42 @@
+<h1>Welcome to my app! Login/Signup to start a project!!</h1>
+
+<h3>Login:</h3>
+<form id="loginForm">
+    <input type="text" name="email" id='loginEmail' placeholder="email"/>
+    <input type="password" name="password" id='loginPassword'/>
+    <button>Login</button>
+</form>
+
+<h3>Signup:</h3>
+<form id="signupForm">
+    <input type="text" name="username" id='signupUsername' placeholder="username"/>
+    <input type="text" name="email" id='signupEmail' placeholder="email"/>
+    <input type="password" name="password" id='signupPassword'/>
+    <button>Signup</button>
+</form>
+
+
+<script src="js/index.js"></script>
+
+{{!-- for finding location --}}
+<script src="//geoip-js.com/js/apis/geoip2/v2.1/geoip2.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+var onSuccess = function(location){
+  console.log(
+      "Lookup successful:\n\n"
+      + JSON.stringify(location, undefined, 4)
+  );
+};
+
+var onError = function(error){
+  console.log(
+      "Error:\n\n"
+      + JSON.stringify(error, undefined, 4)
+  );
+};
+
+geoip2.city(onSuccess, onError);
+
+</script>

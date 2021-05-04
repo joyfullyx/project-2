@@ -7,7 +7,7 @@ const cardData = [
     event_date: 'August 15, 2021',
     event_time: '06:00',
     category_id: 1,
-    user_id: 3
+    user_id: 3,
   },
   {
     event_name: 'Thurston County Food Bank needs volunteers to build fence',
@@ -15,7 +15,7 @@ const cardData = [
     event_date: 'August 20, 2021',
     event_time: '12:00',
     category_id: 3,
-    user_id: 5
+    user_id: 5,
   },
   {
     event_name: 'Star Wars Movie Night at Lions Park!',
@@ -23,7 +23,7 @@ const cardData = [
     event_date: 'August 29, 2021',
     event_time: '08:00',
     category_id: 2,
-    user_id: 2
+    user_id: 2,
   },
   {
     event_name: 'Student offers Lawn Mowing',
@@ -31,7 +31,7 @@ const cardData = [
     event_date: 'August 1,2021',
     event_time: '06:00',
     category_id: 4,
-    user_id: 4
+    user_id: 4,
   },
   {
     event_name: 'Will barter knitting for yard work',
@@ -39,7 +39,7 @@ const cardData = [
     event_date: 'August 22, 2021',
     event_time: '10:00',
     category_id: 5,
-    user_id: 1
+    user_id: 1,
   },
 ];
 

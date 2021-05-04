@@ -1,5 +1,27 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+var geoip = require('geoip-lite');
+
+router.get('/', async (req, res) => {
+  var forwardedIpsStr = req.header('x-forwarded-for');
+  // var ip = '';
+  var ip = '207.97.227.239'
+  var geo = geoip.lookup(ip);
+  console.log(geo);
+
+  if (forwardedIpsStr) {
+     ip = forwardedIps = forwardedIpsStr.split(',')[0];  
+  }
+
+  const userData = await User.findAll({
+    attributes: {
+      exclude: ['password']
+    },
+  }).catch((err) => {
+      res.json(err);
+  });
+  res.json(userData);
+});
 
 router.post('/', async (req, res) => {
   try {

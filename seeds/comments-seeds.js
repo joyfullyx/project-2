@@ -1,5 +1,3 @@
-const { freemem } = require('node:os');
-const { isMainThread } = require('node:worker_threads');
 const { Comments } = require('../models');
 
 const commentsData = [

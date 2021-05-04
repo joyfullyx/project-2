@@ -6,10 +6,10 @@ class Comment extends Model {}
 
 Comment.init({
     content:{
-        type:DataTypes.STRING(255),
+        type:DataTypes.STRING,
     },
     user_id:{
-        type:DataTypes.INTEGER,
+        type:DataTypes.INTEGER, 
         allowNull:false,
     },
     card_id:{

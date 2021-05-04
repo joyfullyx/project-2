@@ -53,7 +53,7 @@ const commentsData = [
   },  
   {
     user_id: 3,
-    comments: 'I can help for an hour.',
+    comments: 'I can help for an hour.', 
     card_id: 2
   },
 ];

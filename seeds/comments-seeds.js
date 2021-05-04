@@ -8,7 +8,7 @@ const commentsData = [
   },
   {
     user_id: 6,
-    content: 'Hey, you guys ever run horror movies?',
+    content: 'Hey, you guys ever run horror movies?', 
     card_id: 3
   },  
   {

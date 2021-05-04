@@ -11,14 +11,14 @@ const seedAll = async () => {
   await seedCategories();
   console.log('\n----- CATEGORIES SEEDED -----\n');
 
+  await seedUser();
+  console.log('\n----- USERS SEEDED -----\n');
+
   await seedCards();
   console.log('\n----- CARDS SEEDED -----\n');
 
   await seedComments();
   console.log('\n----- COMMENTS SEEDED -----\n');
-
-  await seedUser();
-  console.log('\n----- USERS SEEDED -----\n');
 
   process.exit(0);
 };

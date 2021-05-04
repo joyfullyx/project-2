@@ -16,13 +16,21 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    zip_code: {
+    zip: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    name: {
+    first_name: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    last_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    organization: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     email: {
       type: DataTypes.STRING,

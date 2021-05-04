@@ -2,7 +2,7 @@ const { Comments } = require('../models');
 
 const commentsData = [
   {
-    user_id: ,
+    user_id: 3,
     comments: 'Do you happen to be selling a toaster?',
     card_id: 1
   },

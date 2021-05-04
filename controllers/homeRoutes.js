@@ -5,22 +5,16 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   try {
     // Get all categories and JOIN with user data
-    const categoryData = await Category.findAll({
-      include: [
-        {
-          include: User,
-          attributes: ['name'],
-        },
-      ],
-    });
+    const cardData = await Card.findAll();
 
     // Serialize data so the template can read it
-    const category = categoryData.map((category) => category.get({ plain: true }));
+    const card = cardData.map((card) => card.get({ plain: true }));
 
     // Pass serialized data and session flag into template
-    res.render('homepage', category);
+    res.render('homepage', card);
   } catch (err) {
     res.status(500).json(err);
+    console.log(err);
   }
 });
 

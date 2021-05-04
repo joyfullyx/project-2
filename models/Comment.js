@@ -9,11 +9,11 @@ Comment.init({
         type:DataTypes.STRING(255),
     },
     user_id:{
-        type:DataTypes.STRING,
+        type:DataTypes.INTEGER,
         allowNull:false,
     },
     card_id:{
-        type:DataTypes.STRING,
+        type:DataTypes.INTEGER,
         allowNull:false,
     }
 },{

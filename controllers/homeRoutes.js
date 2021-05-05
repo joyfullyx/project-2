@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User, Category, Card, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', async (req, res) => {
+router.get('/category', async (req, res) => {
   try {
     // Get all categories and JOIN with user data
     const categoryData = await Category.findAll({
@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/cards', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     // Get all categories and JOIN with user data
     const cardData = await Card.findAll({

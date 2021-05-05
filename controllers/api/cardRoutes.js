@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const { Card, Category, Comment } = require('../../models');
+const { Card, Category, Comment, User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // find all cards
 router.get('/', withAuth, async (req, res) => {
     try {
         const cardData = await Card.findAll({
-            include: [{ model: Category, model: Comment }],
+            include: [{ model: Comment}, {model: User}, {model: Category}],
         });
         res.status(200).json(cardData);
     } catch (err) {

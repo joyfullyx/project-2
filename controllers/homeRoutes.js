@@ -5,7 +5,37 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   try {
     // Get all categories and JOIN with user data
-    const cardData = await Card.findAll();
+    const categoryData = await Category.findAll({
+      include: [
+        {
+          model: User,
+          model: Card,
+        }
+      ]
+    });
+
+    // Serialize data so the template can read it
+    const category = categoryData.map((category) => category.get({ plain: true }));
+
+    // Pass serialized data and session flag into template
+    res.render('category', {category});
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+});
+
+router.get('/cards', async (req, res) => {
+  try {
+    // Get all categories and JOIN with user data
+    const cardData = await Card.findAll({
+      include: [
+        {
+          model: User,
+          model: Comment,
+        }
+      ]
+    });
 
     // Serialize data so the template can read it
     const card = cardData.map((card) => card.get({ plain: true }));
@@ -43,6 +73,7 @@ router.get('/categories/:id', async (req, res) => {
       include: [
         {
           model: User,
+          model: Card,
           attributes: ['name'],
         },
       ],

@@ -1,5 +1,9 @@
 <h1>Specific Category</h1>
 
 {{#each category}}
-<h1>{{name}}</h1>
+<h2>{{name}}</h2>
+    {{#each cards}}
+    <p><a href="/cards/{{id}}">{{event_name}}</a></p>
+    <p>{{event_desc}}</p>
+    {{/each}}
 {{/each}}

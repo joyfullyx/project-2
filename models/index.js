@@ -17,15 +17,27 @@ Category.hasMany(Card, {
     onDelete: 'CASCADE',
 });
 
+Card.belongsTo(Category, {
+    foreignKey: 'category_id',
+})
+
 User.hasMany(Comment, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE',
 });
 
+Comment.belongsTo(User, {
+    foreignKey: 'user_id',
+})
+
 Card.hasMany(Comment, {
     foreignKey: 'card_id',
     onDelete: 'CASCADE',
 });
+
+Comment.belongsTo(Card, {
+    foreignKey: 'card_id',
+})
 
 module.exports = {
     User,

@@ -1,47 +1,91 @@
-const router = require('express').Router();
-const { User, Category, Card, Comment } = require('../models');
-const withAuth = require('../utils/auth');
+const router = require("express").Router();
+const { User, Category, Card, Comment } = require("../models");
+const withAuth = require("../utils/auth");
+var geoip = require("geoip-lite");
+const sequelize = require("sequelize");
+// const { getDistanceFromLatLonInKm } = require("../utils/geo");
+const { getDistanceLatLonToMiles } = require('../utils/geo');
 
-router.get('/category', async (req, res) => {
+router.get("/", async (req, res) => {
+
   try {
+    var forwardedIpsStr = req.header("x-forwarded-for");
+    // var ip = '';
+    // TEST IP ADDRESS 
+    var ip = "207.97.227.239";
+    var geo = geoip.lookup(ip);
+    var lat = parseFloat(geo.ll[0]);
+    var lon = parseFloat(geo.ll[1]);
+    // console.log(geo);
+    console.log('The IP is %s', geoip.pretty(ip));
+
+    if (forwardedIpsStr) {
+      ip = forwardedIps = forwardedIpsStr.split(",")[0];
+    }
     // Get all categories and JOIN with user data
-    const categoryData = await Category.findAll({
-      include: [
-        {
-          model: User,
-          model: Card,
-        }
-      ]
+    const cardData = await Card.findAll();
+    // // Serialize data so the template can read it
+    // const card = cardData.map((card) => card.get({ plain: true }));
+
+    // const cards = cardData.map((card) => {
+    //   if (
+    //     getDistanceFromLatLonInKm(
+    //       lat,
+    //       lon,
+    //       parseFloat(card.event_location_lat),
+    //       parseFloat(card.event_location_lon)
+    //     ) < 920.00
+    //   )
+    //     return card.get({ plain: true });
+    // });
+
+
+    const cards = cardData.map((card) => {
+      console.log('distance between ip and event in miles: ',(getDistanceLatLonToMiles(
+        lat,
+        lon,
+        parseFloat(card.event_location_lat),
+        parseFloat(card.event_location_lon)
+      )))
+      if (
+        getDistanceLatLonToMiles(
+          lat,
+          lon,
+          parseFloat(card.event_location_lat),
+          parseFloat(card.event_location_lon)
+        ) < 570.00
+      )
+        return card.get({ plain: true });
     });
 
-    // Serialize data so the template can read it
-    const category = categoryData.map((category) => category.get({ plain: true }));
+    // const location = sequelize.literal(`ST_GeomFromText('POINT(${lat} ${lon})', 4326)`);
+    // var distance = sequelize.fn('ST_Distance_Sphere', sequelize.literal('event_location'), location);
 
-    // Pass serialized data and session flag into template
-    res.render('category', {category});
-  } catch (err) {
-    res.status(500).json(err);
-    console.log(err);
-  }
-});
-
-router.get('/', async (req, res) => {
-  try {
-    // Get all categories and JOIN with user data
-    const cardData = await Card.findAll({
-      include: [
+    // const cardData = await Card.findAll({
+    //   attributes: [[sequelize.fn('ST_Distance_Sphere', sequelize.literal('event_location'), location),'distance']],
+    //   order: distance,
+    //   limit: 10,
+    //   logging: console.log
+    // })
+    // .then(function(instance){
+    //   console.log('instance: ', instance);
+    // })
+    // // const cardData = await Card.findAll(query)
+    // console.log('cardData: ', cardData)
+    
+          include: [
         {
           model: User,
           model: Comment,
         }
       ]
-    });
 
-    // Serialize data so the template can read it
-    const card = cardData.map((card) => card.get({ plain: true }));
+
+    console.log("cards: ", cards);
+    // console.log('cardData: ', cardData)
 
     // Pass serialized data and session flag into template
-    res.render('homepage', {card});
+    res.render("homepage", { cards: cards });
   } catch (err) {
     res.status(500).json(err);
     console.log(err);

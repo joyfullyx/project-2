@@ -16,8 +16,10 @@
         <div id="container">
 
 {{#each category}}
-<h1>{{name}}</h1>
-{{/each}}
 
-        </div>
-    </main>
+<h2>{{name}}</h2>
+    {{#each cards}}
+    <p><a href="/cards/{{id}}">{{event_name}}</a></p>
+    <p>{{event_desc}}</p>
+    {{/each}}
+{{/each}}

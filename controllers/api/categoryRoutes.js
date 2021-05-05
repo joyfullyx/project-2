@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Category, Card } = require('../../models');
+const { Category, Card} = require('../../models');
 
 // find all categories
 router.get('/', async (req, res) => {

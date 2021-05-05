@@ -17,10 +17,10 @@
         
             {{#each card}}
                 <div class="card">
-                    <a href="/cards/{{id}}"><h3>{{event_name}}</h3></a>
-                    <p>{{event_des}}</p>
-                    <h6>{{event_date}}</h6>
-                    <h6>{{event_time}}</h6>
+                    <a href="/cards/{{id}}"><h3>{{dataValues.event_name}}</h3></a>
+                    <p>{{dataValues.event_des}}</p>
+                    <h6>{{dataValues.event_date}}</h6>
+                    <h6>{{dataValues.event_time}}</h6>
                 </div>
             {{/each}}
             

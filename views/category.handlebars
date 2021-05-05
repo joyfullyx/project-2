@@ -1,5 +1,23 @@
-<h1>Specific Category</h1>
+    <header id="header">
+        <div id="nav">
+            <div id="header-left"></div>
+            <div id="logo">
+                <h1>CIRCLE</h1>
+                <h3>COMMUNITY BULLETIN</h3>
+            </div>
+            <div id="header-right">
+                <p>Welcome {{username}} &nbsp;&nbsp;|&nbsp;&nbsp;<a href="/login">login</a> &nbsp;&nbsp;|&nbsp;&nbsp;<a href="/signup">signup</a></p>
+            </div>
+        </div>
+
+
+    </header>
+    <main>
+        <div id="container">
 
 {{#each category}}
 <h1>{{name}}</h1>
 {{/each}}
+
+        </div>
+    </main>

@@ -7,6 +7,7 @@ const sequelize = require("sequelize");
 const { getDistanceLatLonToMiles } = require('../utils/geo');
 
 router.get("/", async (req, res) => {
+
   try {
     var forwardedIpsStr = req.header("x-forwarded-for");
     // var ip = '';
@@ -71,6 +72,14 @@ router.get("/", async (req, res) => {
     // })
     // // const cardData = await Card.findAll(query)
     // console.log('cardData: ', cardData)
+    
+          include: [
+        {
+          model: User,
+          model: Comment,
+        }
+      ]
+
 
     console.log("cards: ", cards);
     // console.log('cardData: ', cardData)

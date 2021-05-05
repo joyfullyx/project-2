@@ -25,7 +25,7 @@
         <p>{{content}}</p>
         {{/each}}
         <form id="newCommentForm">
-            <textarea id="newComment" placeholder="Add a Comment"></textarea>
+            <textarea id="newComment" placeholder="Add a Comment" data-id={{id}}></textarea>
             <button>Add Comment</button>
         </form>
         <button class="entryDelBtn" data-id={{id}}>Delete</button>
@@ -33,3 +33,5 @@
 
             </div>
     </main>
+
+<script src="/js/newComment.js"></script>

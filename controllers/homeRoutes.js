@@ -5,27 +5,31 @@ var geoip = require("geoip-lite");
 const sequelize = require("sequelize");
 // const { getDistanceFromLatLonInKm } = require("../utils/geo");
 const { getDistanceLatLonToMiles } = require('../utils/geo');
+let http = require('http').Server(router);
+let ip;
 
 router.get("/", async (req, res) => {
 
   try {
     var forwardedIpsStr = req.header("x-forwarded-for");
+    // var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     // var ip = '';
-
-    var ip = req.ip;
-
+    
+    // ip = req.ip;
+    
     // JOY'S IP ADDRESS
-    // var ip = '71.231.34.183'
-
+    // var ip = '71.231.34.183';
+    
     // TEST IP ADDRESS 
     // var ip = "207.97.227.239";
+    console.log('ip:', ip);
     // console.log('req.ip:', req.ip);
-    var geo = geoip.lookup(ip);
+    var geo = geoip.lookup(forwardedIpsStr);
     console.log('geo:', geo);
     var lat = parseFloat(geo.ll[0]);
     var lon = parseFloat(geo.ll[1]);
     // =========================================================
-    console.log('req.connection.remoteAddress:', req.connection.remoteAddress)
+    // console.log('req.connection.remoteAddress:', req.connection.remoteAddress)
     console.log('The IP is %s', geoip.pretty(ip));
     // =========================================================
     if (forwardedIpsStr) {

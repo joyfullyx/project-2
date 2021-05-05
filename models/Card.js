@@ -15,7 +15,7 @@ Card.init(
           type: DataTypes.STRING,
           allowNull: false,
         },
-        event_des: {
+        event_desc: {
           type: DataTypes.TEXT,
           allowNull: true,
         },
@@ -33,7 +33,7 @@ Card.init(
             allowNull: false,
             default: '06:00'
         },
-        categories_id: {
+        category_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'category',

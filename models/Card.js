@@ -15,7 +15,7 @@ Card.init(
           type: DataTypes.STRING,
           allowNull: false,
         },
-        event_des: {
+        event_description: {
           type: DataTypes.TEXT,
           allowNull: true,
         },

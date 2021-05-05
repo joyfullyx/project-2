@@ -1,4 +1,19 @@
+    <header id="header">
+        <div id="nav">
+            <div id="header-left"></div>
+            <div id="logo">
+                <h1>CIRCLE</h1>
+                <h3>COMMUNITY BULLETIN</h3>
+            </div>
+            <div id="header-right">
+                <p>Welcome {{username}} &nbsp;&nbsp;|&nbsp;&nbsp;<a href="/login">login</a> &nbsp;&nbsp;|&nbsp;&nbsp;<a href="/signup">signup</a></p>
+            </div>
+        </div>
 
+
+    </header>
+    <main>
+        <div id="container">
 
     <div class="card">
         <a href="/cards/{{id}}"><h3>{{event_name}}</h3></a>
@@ -15,3 +30,6 @@
         </form>
         <button class="entryDelBtn" data-id={{id}}>Delete</button>
     </div>
+
+            </div>
+    </main>

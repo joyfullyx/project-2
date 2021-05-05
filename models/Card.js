@@ -33,7 +33,7 @@ Card.init(
             allowNull: false,
             default: '06:00'
         },
-        categories_id: {
+        category_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'category',

@@ -3,6 +3,9 @@
 {{#each card}}
     <div class="card">
         <a href="/cards/{{id}}"><h3>{{event_name}}</h3></a>
+        {{#each user}}
+        {{username}}
+        {{/each}}
         <p>{{event_des}}</p>
         <h6>{{event_date}}</h6>
         <h6>{{event_time}}</h6>

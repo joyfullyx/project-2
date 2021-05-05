@@ -9,11 +9,27 @@ router.get('/', withAuth, async (req, res) => {
             include: [{ model: Comment}, {model: User}, {model: Category}],
         });
         res.status(200).json(cardData);
+        console.log(cardData);
     } catch (err) {
         res.status(500).json(err);
         console.log(err);
     }
 });
+
+router.get('/:id', withAuth, async (req, res) => {
+  try {
+    const cardData = await Card.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: [{ model: Comment}, { model: User}, { model: Category }],
+    });
+    res.status(200).json(cardData);
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+})
 
 // create new card
 router.post('/', withAuth, async (req, res) => {

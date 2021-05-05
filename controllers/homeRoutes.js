@@ -11,19 +11,35 @@ router.get("/", async (req, res) => {
   try {
     var forwardedIpsStr = req.header("x-forwarded-for");
     // var ip = '';
+
+    var ip = req.ip;
+
+    // JOY'S IP ADDRESS
+    // var ip = '71.231.34.183'
+
     // TEST IP ADDRESS 
-    var ip = "207.97.227.239";
+    // var ip = "207.97.227.239";
+    // console.log('req.ip:', req.ip);
     var geo = geoip.lookup(ip);
+    console.log('geo:', geo);
     var lat = parseFloat(geo.ll[0]);
     var lon = parseFloat(geo.ll[1]);
-    // console.log(geo);
+    // =========================================================
+    console.log('req.connection.remoteAddress:', req.connection.remoteAddress)
     console.log('The IP is %s', geoip.pretty(ip));
-
+    // =========================================================
     if (forwardedIpsStr) {
       ip = forwardedIps = forwardedIpsStr.split(",")[0];
     }
     // Get all categories and JOIN with user data
-    const cardData = await Card.findAll();
+    const cardData = await Card.findAll(req.params.id, {
+      include: [
+        {
+          model: User, 
+          model: Comment
+        }
+      ]
+    });
     // // Serialize data so the template can read it
     // const card = cardData.map((card) => card.get({ plain: true }));
 
@@ -40,7 +56,7 @@ router.get("/", async (req, res) => {
     // });
 
 
-    const cards = cardData.map((card) => {
+    const cards = cardData.filter((card) => {
       console.log('distance between ip and event in miles: ',(getDistanceLatLonToMiles(
         lat,
         lon,
@@ -73,24 +89,26 @@ router.get("/", async (req, res) => {
     // // const cardData = await Card.findAll(query)
     // console.log('cardData: ', cardData)
     
-          include: [
-        {
-          model: User,
-          model: Comment,
-        }
-      ]
+      //     include: [
+      //   {
+      //     model: User,
+      //     model: Comment,
+      //   }
+      // ]
 
 
     console.log("cards: ", cards);
     // console.log('cardData: ', cardData)
 
     // Pass serialized data and session flag into template
-    res.render("homepage", { cards: cards });
+    res.render("homepage", { card: cards });
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
   }
 });
+
+// ==============================================
 
 router.get('/cards/:id', async (req, res) => {
   try {

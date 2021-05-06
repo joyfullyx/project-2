@@ -1,4 +1,4 @@
-const { Comments } = require('../models');
+const { Comment } = require('../models');
 
 const commentsData = [
   {
@@ -8,7 +8,11 @@ const commentsData = [
   },
   {
     user_id: 6,
+<<<<<<< HEAD
     content: 'Hey, you guys ever run horror movies?', 
+=======
+    content: 'Hey, you guys ever run horror movies?',
+>>>>>>> 2dbabb788b46c92a146ca0727df2ee6f0b8f058b
     card_id: 3
   },  
   {
@@ -58,6 +62,6 @@ const commentsData = [
   },
 ];
 
-const commentsCard = () => Comments.bulkCreate(commentsData);
+const seedComments = () => Comment.bulkCreate(commentsData);
 
 module.exports = seedComments;

@@ -1,0 +1,31 @@
+    <header id="header">
+        <div id="nav">
+            <div id="header-left"></div>
+            <div id="logo">
+                <h1>CIRCLE</h1>
+                <h3>COMMUNITY BULLETIN</h3>
+            </div>
+            <div id="header-right">
+                <p>Welcome {{username}} &nbsp;&nbsp;|&nbsp;&nbsp;<a href="/login">login</a> &nbsp;&nbsp;|&nbsp;&nbsp;<a href="/signup">signup</a></p>
+            </div>
+        </div>
+
+    </header>
+    <main>
+        <div id="container">
+        
+        
+            {{#each card}}
+                <div class="card">
+                    <a href="/cards/{{id}}"><h3>{{dataValues.event_name}}</h3></a>
+                    <p>{{dataValues.event_des}}</p>
+                    <h6>{{dataValues.event_date}}</h6>
+                    <h6>{{dataValues.event_time}}</h6>
+                </div>
+            {{/each}}
+            
+            
+            
+        </div>
+    </main>
+

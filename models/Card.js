@@ -15,8 +15,22 @@ Card.init(
           type: DataTypes.STRING,
           allowNull: false,
         },
+<<<<<<< HEAD
         event_des: {
           type: DataTypes.TEXT,
+=======
+        event_description: {
+          type: DataTypes.TEXT,
+          allowNull: true,
+        },
+        event_location_lat: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        event_location_lon: {
+          type: DataTypes.STRING,
+          allowNull: false
+>>>>>>> 2dbabb788b46c92a146ca0727df2ee6f0b8f058b
         },
         event_date: {
           type: DataTypes.DATE,
@@ -28,7 +42,7 @@ Card.init(
             allowNull: false,
             default: '06:00'
         },
-        categories_id: {
+        category_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'category',

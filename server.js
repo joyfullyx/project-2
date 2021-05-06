@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+//var geoip = require('geoip-lite');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
@@ -27,12 +28,13 @@ const sess = {
 app.use(session(sess));
 
 // Inform Express.js on which template engine to use
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(express.static('public'));
 
 app.use(routes);
 

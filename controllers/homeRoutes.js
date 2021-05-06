@@ -9,22 +9,22 @@ const { getDistanceLatLonToMiles } = require('../utils/geo');
 
 router.get("/", async (req, res) => {
   try {
-    var forwardedIpsStr = req.header("x-forwarded-for");
+    const forwardedIpsStr = req.header("x-forwarded-for");
     // var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     // ip = req.ip;
     
     // JOY'S IP ADDRESS
-    var ip = '71.231.34.183';
+    const ip = '71.231.34.183';
     
     // TEST IP ADDRESS 
     // var ip = "207.97.227.239";
     console.log('ip:', ip);
     // console.log('req.ip:', req.ip);
-    var geo = geoip.lookup(ip);
-    var lat = parseFloat(geo.ll[0]);
-    var lon = parseFloat(geo.ll[1]);
-    var city = geo.city;
-    var state = geo.region;
+    const geo = geoip.lookup(forwardedIpsStr || ip);
+    const lat = parseFloat(geo.ll[0]);
+    const lon = parseFloat(geo.ll[1]);
+    const city = geo.city;
+    const state = geo.region;
     console.log('city, state: ', city, state, lat, lon);
     // console.log('geo:', geo);
     // =========================================================

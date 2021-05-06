@@ -96,16 +96,18 @@ router.get('/cards/:id', async (req, res) => {
   }
 });
 
-router.get('/categories', async (req, res) => {
+router.get('/categories/:id', async (req, res) => {
   try {
-    const categoryData = await Category.findAll({
+    const categoryData = await Category.findByPk(req.params.id, {
       include: [
-        { model: Card },
+        { 
+          model: Card   
+        },
       ],
     });
-    console.log(categoryData);
+    
     const category = categoryData.get({ plain: true });
-    console.log(category)
+    console.log(category);
     res.render('category', {
       ...category,
       logged_in: req.session.logged_in

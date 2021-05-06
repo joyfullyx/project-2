@@ -15,11 +15,13 @@
     <main>
         <div id="container">
 
-{{#each category}}
-
-<h2>{{name}}</h2>
+<h1>{{name}}</h1>
+<br>
     {{#each cards}}
-    <p><a href="/cards/{{id}}">{{event_name}}</a></p>
-    <p>{{event_description}}</p>
+        <p><a href="/cards/{{id}}">{{event_name}}</a></p>
+        <br>
+        <p>{{event_description}}</p>
+        <br>
+        <p>{{event_time}}</p>
     {{/each}}
-{{/each}}
+

@@ -12,7 +12,6 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    
 }
 
 #header-left, #header-right {
@@ -225,7 +224,7 @@ button {
 
 .carddetail h3 {
     font-family: 'brandon grotesque', sans-serif;
-    font-size: 1em;
+    font-size: 1.2em;
     color:#23262F;
     background-color: #e0e0e0;
     border-radius: 6px 6px 0px 0px;
@@ -236,7 +235,7 @@ button {
 
 .carddetail p {
     font-family: 'brandon grotesque', sans-serif;
-    font-size: .8em;
+    font-size: 1em;
     line-height: 1.2em;
     color:#23262F;
     padding: 15px;
@@ -259,16 +258,38 @@ button {
     margin: 15px;
 }
 
+#newComment {
+    margin: 30px;
+}
+
 .commentDelBtn {
     width: 6em;
     margin: 15px;
-    background-color: #e0e0e0;
+    border: 1px solid #e0e0e0;
     color:#23262F;
+    background-color:white;
     font-family: 'brandon grotesque', sans-serif;
-    font-size: .8em;
+    font-size: .6em;
     padding: 2px;
-    margin:0px;
+    margin:0;
+
 }
+
+#commentBlock {
+    padding: 5px 10px 15px 30px;
+    border-bottom: 1px dotted lightgrey;
+
+}
+
+#commentBlock p {
+    color: rgb(132, 132, 132);
+    font-size: .8em;
+    line-height: 1.5em;
+    padding: 0 0 10px 0;
+    /* margin: 0; */
+}
+
+/* ------------------------------------------- */
 
 
 

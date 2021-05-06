@@ -19,7 +19,7 @@ Category.hasMany(Card, {
 
 Card.belongsTo(Category, {
     foreignKey: 'category_id',
-})
+});
 
 User.hasMany(Comment, {
     foreignKey: 'user_id',

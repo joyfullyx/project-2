@@ -9,7 +9,6 @@ let http = require('http').Server(router);
 let ip;
 
 router.get("/", async (req, res) => {
-
   try {
     var forwardedIpsStr = req.header("x-forwarded-for");
     // var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
@@ -21,10 +20,10 @@ router.get("/", async (req, res) => {
     // var ip = '71.231.34.183';
     
     // TEST IP ADDRESS 
-    // var ip = "207.97.227.239";
+    var ip = "207.97.227.239";
     console.log('ip:', ip);
     // console.log('req.ip:', req.ip);
-    var geo = geoip.lookup(forwardedIpsStr);
+    var geo = geoip.lookup(ip);
     console.log('geo:', geo);
     var lat = parseFloat(geo.ll[0]);
     var lon = parseFloat(geo.ll[1]);
@@ -133,26 +132,23 @@ router.get('/cards/:id', async (req, res) => {
   }
 });
 
-router.get('/categories/:id', async (req, res) => {
+router.get('/categories', async (req, res) => {
   try {
-    const categoryData = await Category.findByPk(req.params.id, {
+    const categoryData = await Category.findAll({
       include: [
-        {
-          model: User,
-          model: Card,
-          attributes: ['name'],
-        },
+        { model: Card },
       ],
     });
-
+    console.log(categoryData);
     const category = categoryData.get({ plain: true });
-
+    console.log(category)
     res.render('category', {
       ...category,
       logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
+    console.log(err);
   }
 });
 

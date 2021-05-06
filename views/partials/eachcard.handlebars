@@ -1,5 +1,6 @@
-
-{{#each card}}
-<p>{{event_name}}</p>
-<p>{{event_des}}</p>
-{{/each}}
+<div class="card">
+        <a href="/cards/{{dataValues.id}}"><h3>{{dataValues.event_name}}</h3></a>
+        <p>{{dataValues.event_description}}</p>
+        <h6>{{dataValues.event_date}}</h6>
+        <h6>{{dataValues.event_time}}</h6>
+</div>

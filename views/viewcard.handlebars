@@ -22,13 +22,14 @@
         <h6>{{event_time}}</h6>
         <h6>{{user.username}}</h6>
         {{#each comments}}
-        <p>{{content}}</p>
+            <p>{{content}}</p>
+            <button class="commentDelBtn" data-id={{id}}>Delete</button>
         {{/each}}
         <form id="newCommentForm">
             <textarea id="newComment" placeholder="Add a Comment" data-id={{id}}></textarea>
             <button>Add Comment</button>
         </form>
-        <button class="entryDelBtn" data-id={{id}}>Delete</button>
+        <button class="cardDelBtn" data-id={{id}}>Delete</button>
     </div>
 
             </div>

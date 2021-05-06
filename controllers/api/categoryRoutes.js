@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
         console.log(categoryData);
     } catch (err) {
         res.status(500).json(err);
+        console.log(err);
     }
 })
 

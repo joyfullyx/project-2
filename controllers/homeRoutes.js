@@ -157,7 +157,7 @@ router.get('/profile', withAuth, async (req, res) => {
 
     // res.render('profile', {card});
     res.render('profile', {
-      ...user,
+      ...user, 
       logged_in: true
     });
   } catch (err) {

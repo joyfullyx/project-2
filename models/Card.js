@@ -21,11 +21,11 @@ Card.init(
         },
         event_location_lat: {
           type: DataTypes.STRING,
-          allowNull: false,
+          allowNull: true,
         },
         event_location_lon: {
           type: DataTypes.STRING,
-          allowNull: false
+          allowNull: true,
         },
         event_date: {
           type: DataTypes.DATE,
@@ -35,7 +35,7 @@ Card.init(
         event_time: {
             type: DataTypes.TIME,
             allowNull: false,
-            default: '06:00'
+            defaultValue: '06:00:00',
         },
         category_id: {
             type: DataTypes.INTEGER,

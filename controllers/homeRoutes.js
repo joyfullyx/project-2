@@ -63,13 +63,13 @@ router.get("/", async (req, res) => {
       )
         return card.get({ plain: true });
     });
-
-    console.log("cards: ", cards);
+    const allCards = cards.map((card) => card.get({plain: true}));
+    console.log("cards: ", allCards);
 
     // console.log('cardData: ', cardData)
 
 //     // Pass serialized data and session flag into template
-    res.render("homepage", { card: cards });
+    res.render("homepage", { allCards });
   } catch (err) {
     res.status(500).json(err);
     console.log(err);

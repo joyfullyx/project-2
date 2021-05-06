@@ -37,14 +37,14 @@ router.get('/:id', withAuth, async (req, res) => {
 router.post('/', withAuth, async (req, res) => {
   console.log();
   try {
-    var forwardedIpsStr = req.header("x-forwarded-for");
+    const forwardedIpsStr = req.header("x-forwarded-for");
 
-    var ip = '71.231.34.183';
+    const ip = '71.231.34.183';
     console.log('ip:', ip);
 
-    var geo = geoip.lookup(ip);
-    var city = geo.city;
-    var state = geo.region;
+    const geo = geoip.lookup(forwardedIpsStr || ip);
+    const city = geo.city;
+    const state = geo.region;
     // console.log(city, state);
 
     if (forwardedIpsStr) {
@@ -53,8 +53,8 @@ router.post('/', withAuth, async (req, res) => {
 
     const newCard = await Card.create({
       event_name: req.body.event_name,
-      event_city: geo.city,
-      event_state: geo.region,
+      event_city: city,
+      event_state: state,
       event_description: req.body.event_description,
       event_time: req.body.event_time,
       user_id: req.session.user_id,
@@ -64,7 +64,7 @@ router.post('/', withAuth, async (req, res) => {
 
     const card = newCard.get({ plain: true });
     console.log('logging new card: ', card);
-    res.status(200).json(newCard);
+    res.status(200).json(card);
   } catch (err) {
     res.status(400).json(err);
     console.log(err);

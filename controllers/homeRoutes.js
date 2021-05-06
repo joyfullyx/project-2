@@ -1,32 +1,32 @@
 const router = require("express").Router();
 const { User, Category, Card, Comment } = require("../models");
 const withAuth = require("../utils/auth");
-var geoip = require("geoip-lite");
+const geoip = require("geoip-lite");
 const sequelize = require("sequelize");
-// const { getDistanceFromLatLonInKm } = require("../utils/geo");
 const { getDistanceLatLonToMiles } = require('../utils/geo');
-let http = require('http').Server(router);
-let ip;
+// let http = require('http').Server(router);
+// let ip;
 
 router.get("/", async (req, res) => {
   try {
     var forwardedIpsStr = req.header("x-forwarded-for");
     // var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    // var ip = '';
-    
     // ip = req.ip;
     
     // JOY'S IP ADDRESS
-    // var ip = '71.231.34.183';
+    var ip = '71.231.34.183';
     
     // TEST IP ADDRESS 
     var ip = "207.97.227.239";
     console.log('ip:', ip);
     // console.log('req.ip:', req.ip);
     var geo = geoip.lookup(ip);
-    console.log('geo:', geo);
     var lat = parseFloat(geo.ll[0]);
     var lon = parseFloat(geo.ll[1]);
+    var city = geo.city;
+    var state = geo.region;
+    console.log('city, state: ', city, state, lat, lon);
+    // console.log('geo:', geo);
     // =========================================================
     // console.log('req.connection.remoteAddress:', req.connection.remoteAddress)
     console.log('The IP is %s', geoip.pretty(ip));
@@ -46,25 +46,12 @@ router.get("/", async (req, res) => {
     // // Serialize data so the template can read it
     // const card = cardData.map((card) => card.get({ plain: true }));
 
-    // const cards = cardData.map((card) => {
-    //   if (
-    //     getDistanceFromLatLonInKm(
-    //       lat,
-    //       lon,
-    //       parseFloat(card.event_location_lat),
-    //       parseFloat(card.event_location_lon)
-    //     ) < 920.00
-    //   )
-    //     return card.get({ plain: true });
-    // });
-
-
     const cards = cardData.filter((card) => {
       console.log('distance between ip and event in miles: ',(getDistanceLatLonToMiles(
         lat,
         lon,
         parseFloat(card.event_location_lat),
-        parseFloat(card.event_location_lon)
+        parseFloat(card.event_location_lon),
       )))
       if (
         getDistanceLatLonToMiles(
@@ -72,33 +59,10 @@ router.get("/", async (req, res) => {
           lon,
           parseFloat(card.event_location_lat),
           parseFloat(card.event_location_lon)
-        ) < 570.00
+        ) < 5570.00
       )
         return card.get({ plain: true });
     });
-
-    // const location = sequelize.literal(`ST_GeomFromText('POINT(${lat} ${lon})', 4326)`);
-    // var distance = sequelize.fn('ST_Distance_Sphere', sequelize.literal('event_location'), location);
-
-    // const cardData = await Card.findAll({
-    //   attributes: [[sequelize.fn('ST_Distance_Sphere', sequelize.literal('event_location'), location),'distance']],
-    //   order: distance,
-    //   limit: 10,
-    //   logging: console.log
-    // })
-    // .then(function(instance){
-    //   console.log('instance: ', instance);
-    // })
-    // // const cardData = await Card.findAll(query)
-    // console.log('cardData: ', cardData)
-    
-      //     include: [
-      //   {
-      //     model: User,
-      //     model: Comment,
-      //   }
-      // ]
-
 
     console.log("cards: ", cards);
     // console.log('cardData: ', cardData)

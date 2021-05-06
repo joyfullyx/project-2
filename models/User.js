@@ -16,15 +16,6 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    zip: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
     first_name: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -33,9 +24,10 @@ User.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    organization: {
+    username: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
+      unique: true,
     },
     email: {
       type: DataTypes.STRING,
@@ -51,6 +43,22 @@ User.init(
       validate: {
         len: [8],
       },
+    },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    // zip: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    // },
+    organization: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {
@@ -72,5 +80,4 @@ User.init(
   }
 );
 
-// TODO: import User to models > index.js later
 module.exports =  User 

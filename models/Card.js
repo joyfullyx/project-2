@@ -37,12 +37,16 @@ Card.init(
             allowNull: false,
             defaultValue: '06:00:00',
         },
+        image_path: {
+          type: DataTypes.STRING,
+          allowNull: true,
+        },
         category_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'category',
-                key: 'id',
-            },
+          type: DataTypes.INTEGER,
+          references: {
+              model: 'category',
+              key: 'id',
+          },
         },
         user_id: {
           type: DataTypes.INTEGER,

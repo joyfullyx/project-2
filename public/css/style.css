@@ -16,7 +16,27 @@ header {
 }
 
 #header-left, #header-right {
-    width: 200px;
+    width: 250px;
+}
+
+#filterbar li {
+    display:inline;
+    color: #23262F;
+    font-family: 'brandon grotesque', sans-serif;
+    font-weight: bold;
+    font-size: .8em;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#filterbar li:hover {
+    color: #c62a23;
+    cursor: pointer;
+
+}
+
+#filterbar ul {
+    padding: 50px 50px 0 50px;
 }
 
 #nav {
@@ -43,6 +63,7 @@ header {
     /* position: relative; */
     font-size: 2.2em;
     font-family: 'brandon grotesque', sans-serif;
+    font-weight: bold;
     position: absolute;
     bottom: 12px;
     text-align: center;
@@ -53,6 +74,7 @@ header {
     /* position: relative; */
     font-size: .7em;
     font-family: 'brandon grotesque', sans-serif;
+    font-weight: bold;
     position: absolute;
     bottom: 0px;
     text-align: center;
@@ -61,7 +83,7 @@ header {
 }
 
 #header-right {
-    width: 200px;
+    width: 250px;
     height: 30px;
 }
 
@@ -79,32 +101,66 @@ header {
     color: #bdbdbd;
 }
 
-#publicCardDiv {
-    border: 1px solid green;
-    height: 80vh;
+button {
+    display: inline-block;
+    border: none;
+    padding: .5rem 1.5rem;
+    width: 100%;
+    margin: 0;
+    text-decoration: none;
+    background: #c62a23;
+    color: #ffffff;
+    font-family: 'brandon grotesque', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out, 
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 6px;
+}
+
+#mainDiv {
+    /* background-color:pink; */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: flex-start;
+    align-content: flex-start;
+    width: 100%;
+    height: 70vh;
 }
-#privateCardDiv {
-    border: 1px solid red;
-    min-width: 220px;
-    height: 80vh;
+#rightDiv {
+    /* background-color:lightblue; */
+    width: 180px;
+    padding: 0 10px 0 10px;
+    border-left: 1pt solid lightgrey;
+    height:70vh;
+}
+
+#rightDiv h3 {
+    color: #23262F;
+    font-family: 'brandon grotesque', sans-serif;
+    font-weight: bold;
+    font-size: .8em;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding-bottom: 20px;
 }
 
 #container {
-    width: 80%;
+    width: 95%;
     margin: 0 auto 0 auto;
     display: flex;
-    flex-wrap:wrap;
-    padding-top:20px;
+    flex-wrap:nowrap;
+    padding:20px;
     justify-content:center;
 }
 
+/* CARD STYLES ----------------------------*/
 .card {
-    width: 300px;
-    height: 200px;
+    width: 250px;
+    height: 160px;
     margin: 10px;
     border-radius: 6px;
     background-color: white;
@@ -121,9 +177,100 @@ header {
 
 .card h3 {
     font-family: 'brandon grotesque', sans-serif;
-    font-size: 1.2em;
-    ;
+    font-size: 1em;
+    color:#23262F;
+    background-color: #e0e0e0;
+    border-radius: 6px 6px 0px 0px;
+    padding: 4px;
+    height: 35px;
+    vertical-align: middle;
 }
+
+.card p {
+    font-family: 'brandon grotesque', sans-serif;
+    font-size: .8em;
+    line-height: 1.2em;
+    color:#23262F;
+    padding: 4px;
+}
+
+.card a {
+    text-decoration: none;
+}
+
+#time {
+    display: none;
+}
+
+#date {
+    display: none;
+}
+
+/* DETAILED CARD STYLES ----------------------------*/
+.carddetail {
+    width: 60%;
+    margin: 10px;
+    border-radius: 6px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+.carddetail h3 {
+    font-family: 'brandon grotesque', sans-serif;
+    font-size: 1em;
+    color:#23262F;
+    background-color: #e0e0e0;
+    border-radius: 6px 6px 0px 0px;
+    padding: 15px;
+    height: 35px;
+    vertical-align: middle;
+}
+
+.carddetail p {
+    font-family: 'brandon grotesque', sans-serif;
+    font-size: .8em;
+    line-height: 1.2em;
+    color:#23262F;
+    padding: 15px;
+}
+
+.carddetail a {
+    text-decoration: none;
+}
+
+.carddetail#time {
+    display: none;
+}
+
+.carddetail#date {
+    display: none;
+}
+
+.cardDelBtn {
+    width: 6em;
+    margin: 15px;
+}
+
+.commentDelBtn {
+    width: 6em;
+    margin: 15px;
+    background-color: #e0e0e0;
+    color:#23262F;
+    font-family: 'brandon grotesque', sans-serif;
+    font-size: .8em;
+    padding: 2px;
+    margin:0px;
+}
+
+
 
 #card-tiny {
     width: 200px;
@@ -139,3 +286,59 @@ nav ul {
 nav li {
     display: inline;
 }
+
+
+
+/* MODAL STYLING */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%; /* Could be more or less, depending on screen size */
+    border-radius: 6px;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+
+  /*  Form styling  */
+  button, input, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+  }
+
+  input, textarea, select {
+    width : 80%;
+    padding: 5px 5px 5px 5px;
+    margin:  5px 0 5px 0;
+    box-sizing: border-box;
+  }

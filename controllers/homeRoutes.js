@@ -42,7 +42,9 @@ router.get("/", async (req, res) => {
           model: Comment
         }
       ]
-    });
+    },
+  }
+  });
     // // Serialize data so the template can read it
     // const card = cardData.map((card) => card.get({ plain: true }));
 
@@ -65,17 +67,38 @@ router.get("/", async (req, res) => {
     });
 
     console.log("cards: ", cards);
+
     // console.log('cardData: ', cardData)
 
-    // Pass serialized data and session flag into template
-    res.render("homepage", { card: cards });
-  } catch (err) {
-    res.status(500).json(err);
-    console.log(err);
-  }
-});
+//     // Pass serialized data and session flag into template
+//     res.render("homepage", { card: cards });
+//   } catch (err) {
+//     res.status(500).json(err);
+//     console.log(err);
+//   }
+// });
 
 // ==============================================
+
+router.get('/', async (req, res) => {
+  // try {
+  //   const cardData = await Card.findAll( {
+  //     include: [
+  //       {
+  //         model: User,
+  //         model: Comment,
+  //       },
+  //     ],
+  //   });
+  //   const card = cardData.get({ plain: true });
+
+  //   res.render('homepage', {...card});
+  // } catch (err) {
+  //   res.status(500).json(err);
+  //   console.log(err);
+  // }
+  res.render('homepage');
+});
 
 router.get('/cards/:id', async (req, res) => {
   try {
@@ -120,6 +143,9 @@ router.get('/categories/:id', async (req, res) => {
 
 // Use withAuth middleware to prevent access to route
 router.get('/profile', withAuth, async (req, res) => {
+  // console.log(req.session);
+  // res.send(`welcome, ${req.session.user_id}`);
+  
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
@@ -128,10 +154,12 @@ router.get('/profile', withAuth, async (req, res) => {
       },
     });
 
-    const user = userData.get({ plain: true });
+    const user = await userData.get({ plain: true });
+    // const card = cardData.get({ plain: true });
 
+    // res.render('profile', {card});
     res.render('profile', {
-      ...user,
+      ...user, 
       logged_in: true
     });
   } catch (err) {
@@ -150,4 +178,4 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-module.exports = router;
+module.exports = router

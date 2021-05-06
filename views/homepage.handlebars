@@ -12,17 +12,24 @@
 
     </header>
     <main>
+        {{> sortbar}}
+
         <div id="container">
+
+            <div id='mainDiv'>
         
         
             {{#each card}}
                 <div class="card">
-                    <a href="/cards/{{dataValues.id}}"><h3>{{dataValues.event_name}}</h3></a>
+                    <a href="/cards/{{dataValues.id}}"><h3>{{dataValues.event_name}}</h3>
                     <p>{{dataValues.event_description}}</p>
-                    <h6>{{dataValues.event_date}}</h6>
-                    <h6>{{dataValues.event_time}}</h6>
+                    <h6 id="date">{{dataValues.event_date}}</h6>
+                    <h6 id="time">{{dataValues.event_time}}</h6>
+                    </a>
                 </div>
             {{/each}}
+
+            </div>
             
             
             

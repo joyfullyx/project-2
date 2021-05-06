@@ -29,7 +29,7 @@ app.use(session(sess));
 
 // Inform Express.js on which template engine to use
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 

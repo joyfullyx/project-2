@@ -42,9 +42,8 @@ router.get("/", async (req, res) => {
           model: Comment
         }
       ]
-    },
-  }
-  });
+    });
+  
     // // Serialize data so the template can read it
     // const card = cardData.map((card) => card.get({ plain: true }));
 
@@ -71,33 +70,11 @@ router.get("/", async (req, res) => {
     // console.log('cardData: ', cardData)
 
 //     // Pass serialized data and session flag into template
-//     res.render("homepage", { card: cards });
-//   } catch (err) {
-//     res.status(500).json(err);
-//     console.log(err);
-//   }
-// });
-
-// ==============================================
-
-router.get('/', async (req, res) => {
-  // try {
-  //   const cardData = await Card.findAll( {
-  //     include: [
-  //       {
-  //         model: User,
-  //         model: Comment,
-  //       },
-  //     ],
-  //   });
-  //   const card = cardData.get({ plain: true });
-
-  //   res.render('homepage', {...card});
-  // } catch (err) {
-  //   res.status(500).json(err);
-  //   console.log(err);
-  // }
-  res.render('homepage');
+    res.render("homepage", { card: cards });
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
 });
 
 router.get('/cards/:id', async (req, res) => {
@@ -176,6 +153,26 @@ router.get('/login', (req, res) => {
   }
 
   res.render('login');
+});
+
+router.get('/signup', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/profile');
+    return;
+  }
+
+  res.render('signup');
+})
+
+router.get('/logout', (req, res) => {
+  if (req.session.logged_in) {
+      req.session.destroy(() => {
+          res.status(204).end();
+      });
+      res.redirect('/');
+  } else {
+      res.status(404).end();
+  }
 });
 
 module.exports = router

@@ -7,6 +7,7 @@ const { getDistanceLatLonToMiles } = require('../utils/geo');
 // let http = require('http').Server(router);
 // let ip;
 
+
 router.get("/", async (req, res) => {
   try {
     var forwardedIpsStr = req.header("x-forwarded-for");
@@ -118,6 +119,9 @@ router.get('/categories', async (req, res) => {
 
 // Use withAuth middleware to prevent access to route
 router.get('/profile', withAuth, async (req, res) => {
+  // console.log(req.session);
+  // res.send(`welcome, ${req.session.user_id}`);
+  
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
@@ -126,8 +130,10 @@ router.get('/profile', withAuth, async (req, res) => {
       },
     });
 
-    const user = userData.get({ plain: true });
+    const user = await userData.get({ plain: true });
+    // const card = cardData.get({ plain: true });
 
+    // res.render('profile', {card});
     res.render('profile', {
       ...user,
       logged_in: true

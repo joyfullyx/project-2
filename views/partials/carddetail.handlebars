@@ -6,14 +6,16 @@
         <h6 id="date">{{event_date}}</h6>
         <h6 id="time">{{event_time}}</h6>
         <h6>{{user.username}}</h6>
+        <p style="color:lightgrey; border-bottom: 1px dotted lightgrey">comments</p>
+        <div id="commentBlock">
         {{#each comments}}
-            <p>{{user.username}}</p>
             <p>{{content}}</p>
             <button class="commentDelBtn" data-id={{id}}>Delete</button>
         {{/each}}
+        </div>
         <form id="newCommentForm">
             <textarea id="newComment" placeholder="Add a Comment" data-id={{id}}></textarea>
             <button>Add Comment</button>
-        </form>
         <button class="cardDelBtn" data-id={{id}}>Delete</button>
+        </form>
 </div>

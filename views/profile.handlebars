@@ -12,11 +12,22 @@
 
 
     </header>
-<form id="newCardForm">
+
+    <main>
+        <div id="container">
+        
+        
+           <p>hello {{> eachcard }}</p>
+            
+            <form id="newCardForm">
     <input type="text" name="name" placeholder="Name" id="newCardName">
     <textarea id="newCardDescription" placeholder="Description"></textarea>
+    <input type="text" name="location" placeholder="Name" id="newCardName">
+
     <button>Create Card</button>
 </form>
-
+            
         </div>
     </main>
+
+

@@ -10,9 +10,10 @@ document.querySelector('#newCardForm').addEventListener("submit", event => {
     }
     console.log(fetchObj)
 
-    axios.post(`/api/cards`, fetchObj)
+    axios.post(`/api/cards/`, fetchObj)
     .then((data) => {
         console.log(data);
+        location.reload();
     }).catch(console.log)
     // fetch('/api/cards', {
     //     method: "POST",

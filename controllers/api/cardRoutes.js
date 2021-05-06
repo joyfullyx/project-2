@@ -10,8 +10,9 @@ router.get('/', withAuth, async (req, res) => {
         const cardData = await Card.findAll({
             include: [{ model: Comment}, {model: User}, {model: Category}],
         });
-        res.status(200).json(cardData);
-        console.log(cardData);
+        const allCards = cardData.map((card) => card.get({plain: true}));
+        res.status(200).json(allCards);
+        console.log(allCards);
     } catch (err) {
         res.status(500).json(err);
         console.log(err);
@@ -26,7 +27,9 @@ router.get('/:id', withAuth, async (req, res) => {
       },
       include: [{ model: Comment}, { model: User}, { model: Category }],
     });
-    res.status(200).json(cardData);
+
+    const allCards = cardData.get({plain: true});
+    res.status(200).json(allCards);
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
@@ -45,6 +48,8 @@ router.post('/', withAuth, async (req, res) => {
     const geo = geoip.lookup(forwardedIpsStr || ip);
     const city = geo.city;
     const state = geo.region;
+    const lat = parseFloat(geo.ll[0]);
+    const lon = parseFloat(geo.ll[1]);
     // console.log(city, state);
 
     if (forwardedIpsStr) {
@@ -55,11 +60,13 @@ router.post('/', withAuth, async (req, res) => {
       event_name: req.body.event_name,
       event_city: city,
       event_state: state,
+      event_location_lat: lat,
+      event_location_lon: lon,
       event_description: req.body.event_description,
       event_time: req.body.event_time,
       user_id: req.session.user_id,
     });
-    console.log(newCard);
+    console.log("newcard: ", newCard);
 
 
     const card = newCard.get({ plain: true });

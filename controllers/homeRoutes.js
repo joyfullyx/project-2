@@ -59,7 +59,7 @@ router.get("/", async (req, res) => {
           lon,
           parseFloat(card.event_location_lat),
           parseFloat(card.event_location_lon)
-        ) < 5570.00
+        ) < 30.00
       )
         return card.get({ plain: true });
     });
@@ -165,7 +165,7 @@ router.get('/profile', withAuth, async(req, res) => {
           lon,
           parseFloat(card.event_location_lat),
           parseFloat(card.event_location_lon)
-        ) < 5570.00
+        ) < 30.00
       )
       return card.get({ plain: true });
     });

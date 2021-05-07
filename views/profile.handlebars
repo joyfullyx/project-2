@@ -21,11 +21,13 @@
                         <form id="newCardForm">
                             <h2>Create a new card</h2>
                             <input type="text" name="name" placeholder="Event Name" id="newCardName"><br>
-                            <input type="text" name="time" placeholder="Enter a Time: 00:00:00" id="newCardTime"><br>
-                            <input type="text" name="date" placeholder="Enter a Date: 00:00:00" id="newCardDate"><br>
+                            <input type="time" name="time" placeholder="Enter a Time: 00:00:00" id="newCardTime"><br>
+                            <input type="date" name="date" placeholder="Enter a Date: 00:00:00" id="newCardDate"><br>
                             <textarea id="newCardDescription" placeholder="Description" data-id={{id}}></textarea><br>
-                            {{> widget}}<br>
+                            <div id="footer">
+                            {{> widget}}
                             <button id="newCardPost">Post</button>
+                            </div>
                         </form>
                     </div>
 

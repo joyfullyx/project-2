@@ -14,8 +14,13 @@ header {
     align-items: flex-end;
 }
 
+
 #header-left, #header-right {
     width: 250px;
+}
+
+main {
+    background: #f1f1f1;
 }
 
 #filterbar li {
@@ -398,7 +403,35 @@ button {
     height: 48px;
     border-radius:6px;
     margin: 10px 0 10px 0;
+}
 
+#footer {
+    display:flex;
+    justify-content:space-between;
+    width:80%;
+}
+
+#form {
+    display:flex;
+    flex-direction:column;
+    width:50%;
+    padding-top:100px;
+}
+
+#form h3 {
+    font-family: 'brandon grotesque', sans-serif;
+    font-size: 1.8em;
+    line-height: 1.2em;
+    color:#23262F;
+    margin-bottom: 30px;
+}
+
+#loginEmail {
+    width:100%;
+}
+
+#loginPassword {
+    width:100%;
 }
 
 #upload_widget {
@@ -406,6 +439,11 @@ button {
     height: 48px;
     border-radius:6px;
     margin: 10px 0 10px 0;
+}
+
+#loginForm button {
+    margin-top:5px;
+    margin-bottom:5px;
 }
 
 .mycard {

@@ -16,6 +16,7 @@ router.get('/', withAuth, async (req, res) => {
         console.log(err);
     }
 })
+
 //Post Comment Route
 router.post('/:id', withAuth, async (req, res) => {
     console.log("THIS IS req.params", req.params);

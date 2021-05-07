@@ -50,8 +50,9 @@ delBtns2.forEach(button=> {
         }).then(res => {
         if(!res.ok) {
             alert("No card to delete")
-            console.log(res)
         } else {
+            console.log(res)
+            location.replace('/profile');
             alert("Congrats you played yaself")
         }
         })

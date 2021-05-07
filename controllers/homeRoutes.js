@@ -248,7 +248,8 @@ router.get('/profile', withAuth, async(req, res) => {
     res.render('profile', {
       card: allCards,
       ...user,
-      logged_in: true
+      logged_in: true, 
+      currUser: req.session.user_id //test line
     })
   } catch (err) {
     res.status(500).json(err);
@@ -278,6 +279,7 @@ router.get('/signup', (req, res) => {
 router.get('/logout', async (req, res) => {
   if (req.session.logged_in) {
       req.session.destroy(() => {
+
         res.status(204).end();
       });
     if (!req.session) {

@@ -9,7 +9,9 @@
 // TODO: do we need to show multiple images per card?
 // TODO: needs some way of updating an existing card
 
+
 const imgBtn = document.getElementById('upload_widget');
+
 
 var myWidget = cloudinary.createUploadWidget(
     {
@@ -49,6 +51,7 @@ var myWidget = cloudinary.createUploadWidget(
       const imgSrcUrl = result.info.secure_url;
       console.log('image source url: ', imgSrcUrl)
       console.log(`<span><img src="${imgSrcUrl}"></span>`)
+
       // TODO: associate with correct card record
       // TODO: lookup correct path to card API instead of hard coding
       fetch(`/api/cards`).then(response => response.json()).then(card => {
@@ -74,6 +77,8 @@ var myWidget = cloudinary.createUploadWidget(
 
 // 'http://localhost:3001/api/cards/1
 
+
+})
 
 imgBtn.addEventListener('click', event => {
   event.preventDefault();

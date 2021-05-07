@@ -9,13 +9,15 @@
 // TODO: do we need to show multiple images per card?
 // TODO: needs some way of updating an existing card
 
+const imgBtn = document.getElementById('upload_widget');
+
 var myWidget = cloudinary.createUploadWidget(
     {
         cloudName: "kkhunt",
         uploadPreset: "nhww67ae",
         sources: ["local", "facebook", "instagram", "camera", "url"],
-        googleApiKey: "<image_search_google_api_key>",
-        showAdvancedOptions: true,
+        // googleApiKey: "<image_search_google_api_key>",
+        showAdvancedOptions: false,
         cropping: true,
         multiple: false,
         defaultSource: "local",
@@ -41,15 +43,21 @@ var myWidget = cloudinary.createUploadWidget(
   (error, result) => {
     if (!error && result && result.event === "success") {
       console.log("Done! Here is the image info: ", result.info);
+      
+    
       //console.log(document.location.protocol + cloudinaryImageRoot + result.info.path)
-
+      const imgSrcUrl = result.info.secure_url;
+      console.log('image source url: ', imgSrcUrl)
+      console.log(`<span><img src="${imgSrcUrl}"></span>`)
       // TODO: associate with correct card record
       // TODO: lookup correct path to card API instead of hard coding
-      fetch('http://localhost:3001/api/cards/1').then(response => response.json()).then(card => {
-        console.log("Got card:");
-        console.log(card);
-        card.image_path = result.info.image_path;
-        fetch('http://localhost:3001/api/cards/1', {
+      fetch(`/api/cards`).then(response => response.json()).then(card => {
+        console.log("Got card: ", card);
+
+        const imagePath = result.info;
+        console.log('image path: ', imagePath);
+
+        fetch(`/api/cards/`, {
           headers: { },  // auth header here?
           method: 'POST',
           body: JSON.stringify(card)
@@ -61,17 +69,25 @@ var myWidget = cloudinary.createUploadWidget(
 
     }
   }
+
 );
 
+// 'http://localhost:3001/api/cards/1
 
 
-document.getElementById("upload_widget").addEventListener(
-  "click",
-  function () {
-    myWidget.open();
-  },
-  false
-);
+imgBtn.addEventListener('click', event => {
+  event.preventDefault();
+  myWidget.open();
+})
+
+
+// document.getElementById("upload_widget").addEventListener(
+//   "click",
+//   function () {
+//     myWidget.open();
+//   },
+//   false
+// );
 
 // function showUploadWidget() {
 //   cloudinary.openUploadWidget(

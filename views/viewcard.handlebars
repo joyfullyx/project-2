@@ -3,6 +3,7 @@
 
     <main>
         <div id="container">
+            <div id="mainDiv">
             {{>carddetail}}
     {{!-- <div class="card">
         <a href="/cards/{{id}}"><h3>{{event_name}}</h3></a>
@@ -20,8 +21,9 @@
         </form>
         <button class="cardDelBtn" data-id={{id}}>Delete</button>
     </div> --}}
-
-            </div>
+            </div> 
+            {{#if logged_in}} {{>sidebar}} {{/if}}
+        </div>
     </main>
 
 <script src="/js/newComment.js"></script>

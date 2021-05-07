@@ -205,11 +205,13 @@ router.get('/cards/:id', async (req, res) => {
       });
       const card = cardData.get({ plain: true });
   
-      const commentData = await Comment.findByPk(req.params.id);
-      const comment = commentData.get({ plain: true});
-
-      res.render('viewcard', {...card, card: card, ...user, ...comment, logged_in: req.session.logged_in});
-      console.log(comment);
+      // const commentData = await Comment.findByPk(req.params.id);
+      // if(commentData){
+        // const comment = commentData.get({ plain: true});
+        res.render('viewcard', {...user, ...card, card: card, logged_in: req.session.logged_in});
+      // } else {
+      //   res.render('viewcard', {...card, card: card, ...user, ...comment, logged_in: req.session.logged_in});
+      // }
     } catch (err) {
         res.status(500).json(err);
         console.log(err);

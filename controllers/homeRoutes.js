@@ -205,11 +205,11 @@ router.get('/cards/:id', async (req, res) => {
       });
       const card = cardData.get({ plain: true });
   
-      const commentData = await Comment.findAll();
-      const comments = commentData.map((comment) => comment.get({ plain: true }));
+      const commentData = await Comment.findByPk(req.params.id);
+      const comment = commentData.get({ plain: true});
 
-      res.render('viewcard', {...card, card: card, ...user, comment: comments, logged_in: req.session.logged_in});
-      console.log(comments);
+      res.render('viewcard', {...card, card: card, ...user, ...comment, logged_in: req.session.logged_in});
+      console.log(comment);
     } catch (err) {
         res.status(500).json(err);
         console.log(err);

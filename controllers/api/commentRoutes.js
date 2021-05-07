@@ -8,8 +8,9 @@ router.get('/', withAuth, async (req, res) => {
         const commentData = await Comment.findAll({
             include: [{ model: Card }],
         });
-        res.status(200).json(commentData)
-        console.log(commentData);
+        const comments = commentData.map((comment) => comment.get({ plain: true }));
+        res.status(200).json(comments)
+        console.log(comments);
     } catch (err) {
         res.status(500).json(err);
         console.log(err);
@@ -25,6 +26,7 @@ router.post('/:id', withAuth, async (req, res) => {
             card_id: req.params.id,
         });
         res.status(200).json(newComment);
+        console.log(newComment)
     } catch (err) {
         console.log(err);
         res.status(400).json(err);

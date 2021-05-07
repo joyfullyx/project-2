@@ -45,3 +45,5 @@ module.exports = {
     Comment,
     Card,
 };
+
+// card belongs to many users through comment

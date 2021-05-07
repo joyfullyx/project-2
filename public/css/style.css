@@ -319,6 +319,10 @@ button {
     text-decoration: none;
 }
 
+#eventImg {
+    display: block;
+}
+
 .carddetail#time {
     display: none;
 }

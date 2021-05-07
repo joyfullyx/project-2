@@ -28,10 +28,11 @@ delBtns.forEach(button=> {
             console.log(res);
             console.log(idToDel)
         if(!res.ok) {
-            alert("No project to delete")
+            alert("No comment to delete")
             console.log(res)
         } else {
             alert("Congrats you played yaself")
+            res.redirect('/');
         }
         location.reload();
         })
@@ -48,7 +49,7 @@ delBtns2.forEach(button=> {
             method: "DELETE"
         }).then(res => {
         if(!res.ok) {
-            alert("No project to delete")
+            alert("No card to delete")
             console.log(res)
         } else {
             alert("Congrats you played yaself")

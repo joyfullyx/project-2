@@ -21,9 +21,17 @@ Card.init(
         },
         event_location_lat: {
           type: DataTypes.STRING,
-          allowNull: true,
+          allowNull: true
         },
         event_location_lon: {
+          type: DataTypes.STRING,
+          allowNull: true
+        },
+        event_city: {
+          type: DataTypes.STRING,
+          allowNull: true,
+        },
+        event_state: {
           type: DataTypes.STRING,
           allowNull: true,
         },

@@ -8,23 +8,24 @@ const { getDistanceLatLonToMiles } = require('../utils/geo');
 // let ip;
 
 router.get("/", async (req, res) => {
+  if(!req.session.logged_in){
   try {
-    var forwardedIpsStr = req.header("x-forwarded-for");
+    const forwardedIpsStr = req.header("x-forwarded-for");
     // var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     // ip = req.ip;
     
     // JOY'S IP ADDRESS
-    var ip = '71.231.34.183';
+    const ip = '71.231.34.183';
     
     // TEST IP ADDRESS 
     // var ip = "207.97.227.239";
     console.log('ip:', ip);
     // console.log('req.ip:', req.ip);
-    var geo = geoip.lookup(ip);
-    var lat = parseFloat(geo.ll[0]);
-    var lon = parseFloat(geo.ll[1]);
-    var city = geo.city;
-    var state = geo.region;
+    const geo = geoip.lookup(forwardedIpsStr || ip);
+    const lat = parseFloat(geo.ll[0]);
+    const lon = parseFloat(geo.ll[1]);
+    const city = geo.city;
+    const state = geo.region;
     console.log('city, state: ', city, state, lat, lon);
     // console.log('geo:', geo);
     // =========================================================
@@ -34,6 +35,13 @@ router.get("/", async (req, res) => {
     if (forwardedIpsStr) {
       ip = forwardedIps = forwardedIpsStr.split(",")[0];
     }
+    // const userData = await User.findByPk(req.session.user_id, {
+    //   attributes: {
+    //     exclude: ['password']
+    //   },
+    // })
+
+    // const user = await userData.get({ plain: true });
     // Get all categories and JOIN with user data
     const cardData = await Card.findAll(req.params.id, {
       include: [
@@ -59,63 +67,209 @@ router.get("/", async (req, res) => {
           lon,
           parseFloat(card.event_location_lat),
           parseFloat(card.event_location_lon)
-        ) < 5570.00
+        ) < 30.00
       )
         return card.get({ plain: true });
     });
-
-    console.log("cards: ", cards);
+    const allCards = cards.map((card) => card.get({plain: true}));
+    console.log("cards: ", allCards);
 
     // console.log('cardData: ', cardData)
 
 //     // Pass serialized data and session flag into template
-    res.render("homepage", { card: cards });
+    res.render("homepage", { card: allCards, logged_in: req.session.logged_in });
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
+  }} 
+  
+  
+  else {
+      try {
+        var forwardedIpsStr = req.header("x-forwarded-for");
+        // var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+        // ip = req.ip;
+        
+        // JOY'S IP ADDRESS
+        var ip = '71.231.34.183';
+        
+        // TEST IP ADDRESS 
+        // var ip = "207.97.227.239";
+        console.log('ip:', ip);
+        // console.log('req.ip:', req.ip);
+        var geo = geoip.lookup(ip);
+        var lat = parseFloat(geo.ll[0]);
+        var lon = parseFloat(geo.ll[1]);
+        var city = geo.city;
+        var state = geo.region;
+        console.log('city, state: ', city, state, lat, lon);
+        // console.log('geo:', geo);
+        // =========================================================
+        // console.log('req.connection.remoteAddress:', req.connection.remoteAddress)
+        console.log('The IP is %s', geoip.pretty(ip));
+        // =========================================================
+        if (forwardedIpsStr) {
+          ip = forwardedIps = forwardedIpsStr.split(",")[0];
+        }
+        // const userData = await User.findByPk(req.session.user_id, {
+        //   attributes: {
+        //     exclude: ['password']
+        //   },
+        // })
+        const userData = await User.findByPk(req.session.user_id, {
+          attributes: {
+            exclude: ['password']
+          },
+        })
+    
+        const user = await userData.get({ plain: true });
+        // const user = await userData.get({ plain: true });
+        // Get all categories and JOIN with user data
+        const cardData = await Card.findAll(req.params.id, {
+          include: [
+            {
+              model: User, 
+              model: Comment
+            }
+          ]
+        });
+        // // Serialize data so the template can read it
+        // const card = cardData.map((card) => card.get({ plain: true }));
+    
+        const cards = cardData.filter((card) => {
+          console.log('distance between ip and event in miles: ',(getDistanceLatLonToMiles(
+            lat,
+            lon,
+            parseFloat(card.event_location_lat),
+            parseFloat(card.event_location_lon),
+          )))
+          if (
+            getDistanceLatLonToMiles(
+              lat,
+              lon,
+              parseFloat(card.event_location_lat),
+              parseFloat(card.event_location_lon)
+            ) < 30.00
+          )
+            return card.get({ plain: true });
+        });
+        const allCards = cards.map((card) => card.get({plain: true}));
+        console.log("cards: ", allCards);
+    
+        // console.log('cardData: ', cardData)
+    
+    //     // Pass serialized data and session flag into template
+        res.render("homepage", { card: allCards, ...user, logged_in: req.session.logged_in });
+      } catch (err) {
+        res.status(500).json(err);
+        console.log(err);
+      }
   }
 });
 
 router.get('/cards/:id', async (req, res) => {
-  try {
-    const cardData = await Card.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          model: Comment,
+  if(!req.session.logged_in) {
+    try {
+      const cardData = await Card.findByPk(req.params.id, {
+        include: [
+          {
+            model: User,
+            model: Comment,
+          },
+        ],
+      });
+      const card = cardData.get({ plain: true });
+  
+      res.render('viewcard', {card: card});
+      console.log("it lives")
+    } catch (err) {
+      res.status(500).json(err);
+      console.log(err);
+    } 
+  } 
+  else {
+    try {
+      const userData = await User.findByPk(req.session.user_id, {
+        attributes: {
+          exclude: ['password']
         },
-      ],
-    });
-    const card = cardData.get({ plain: true });
+      })
+  
+      const user = await userData.get({ plain: true });
 
-    res.render('viewcard', {...card});
-  } catch (err) {
-    res.status(500).json(err);
-    console.log(err);
+      const cardData = await Card.findByPk(req.params.id, {
+        include: [
+          {
+            model: User,
+            model: Comment,
+          },
+        ],
+      });
+      const card = cardData.get({ plain: true });
+  
+      res.render('viewcard', {...card, card: card, ...user, logged_in: req.session.logged_in});
+      console.log(card.id);
+    } catch (err) {
+        res.status(500).json(err);
+        console.log(err);
+      }
   }
 });
-
+  
 router.get('/categories/:id', async (req, res) => {
-  try {
-    const categoryData = await Category.findByPk(req.params.id, {
-      include: [
-        { 
-          model: Card   
+  if(!req.session.logged_in) {
+    try {
+      const categoryData = await Category.findByPk(req.params.id, {
+        include: [
+          { 
+            model: Card   
+          },
+        ],
+      });
+      
+      const category = categoryData.get({ plain: true });
+      console.log(category);
+      res.render('category', {
+        ...category,
+        logged_in: req.session.logged_in
+      });
+    } catch (err) {
+      res.status(500).json(err);
+      console.log(err);
+    }
+  } 
+  else {
+    try {
+      const userData = await User.findByPk(req.session.user_id, {
+        attributes: {
+          exclude: ['password']
         },
-      ],
-    });
-    
-    const category = categoryData.get({ plain: true });
-    console.log(category);
-    res.render('category', {
-      ...category,
-      logged_in: req.session.logged_in
-    });
-  } catch (err) {
-    res.status(500).json(err);
-    console.log(err);
+      })
+  
+      const user = await userData.get({ plain: true });
+
+      const categoryData = await Category.findByPk(req.params.id, {
+        include: [
+          { 
+            model: Card   
+          },
+        ],
+      });
+      
+      const category = categoryData.get({ plain: true });
+      console.log(category);
+      res.render('category', {
+        ...category,
+        ...user,
+        logged_in: req.session.logged_in,
+      });
+    } catch (err) {
+      res.status(500).json(err);
+      console.log(err);
+    }
   }
-});
+  }
+);
 
 router.get('/profile', withAuth, async(req, res) => {
 
@@ -145,10 +299,8 @@ router.get('/profile', withAuth, async(req, res) => {
     const user = await userData.get({ plain: true });
     const cardData = await Card.findAll(req.params.id, {
       include: [
-        {
-          model: User,
-          model: Comment
-        }
+        { model: User },
+        { model: Comment }
       ]
     })
 
@@ -165,14 +317,14 @@ router.get('/profile', withAuth, async(req, res) => {
           lon,
           parseFloat(card.event_location_lat),
           parseFloat(card.event_location_lon)
-        ) < 5570.00
+        ) < 30.00
       )
       return card.get({ plain: true });
     });
-
-    console.log("cards: ", cards);
+    const allCards = cards.map((card) => card.get({plain: true}));
+    console.log("cards: ", allCards, user);
     res.render('profile', {
-      card: cards,
+      card: allCards,
       ...user,
       logged_in: true
     })
@@ -201,12 +353,14 @@ router.get('/signup', (req, res) => {
   res.render('signup');
 })
 
-router.get('/logout', (req, res) => {
+router.get('/logout', async (req, res) => {
   if (req.session.logged_in) {
       req.session.destroy(() => {
           res.status(204).end();
       });
+    if (!req.session) {
       res.redirect('/');
+    };
   } else {
       res.status(404).end();
   }

@@ -146,6 +146,17 @@ button {
     text-transform: uppercase;
     padding-bottom: 20px;
 }
+#rightDiv h4 {
+    color: #23262F;
+    font-family: 'brandon grotesque', sans-serif;
+    font-weight: bold;
+    font-size: .8em;
+    cursor: pointer;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    margin:0;
+    padding-left:0;
+}
 
 #container {
     width: 95%;
@@ -293,13 +304,15 @@ button {
 
 
 
-#card-tiny {
-    width: 200px;
+.mycard {
+    width: 180px;
     height: 40px;
     margin: 10px;
     border-radius: 6px;
-    background-color: white;
+    background-color: #23262F;
 }
+
+
 
 nav ul {
     display: inline;

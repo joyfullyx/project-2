@@ -1,48 +1,39 @@
-    <header id="header">
-        <div id="nav">
-            <div id="header-left"></div>
-            <div id="logo">
-                <h1>CIRCLE</h1>
-                <h3>COMMUNITY BULLETIN</h3>
-            </div>
-            <div id="header-right">
-                <p>Welcome {{username}} &nbsp;&nbsp;|&nbsp;&nbsp;<a href="/logout">logout</a></p>
-            </div>
-        </div>
 
-
-    </header>
+{{> header}}
 
     <main>
         {{> sortbar}}
-
         <div id="container">
             <div id="mainDiv">
-                
-                
                 {{#each card}}
                     {{> eachcard }}
                 {{/each}}
             </div>
             <div id="rightDiv">
-                <h3>My Profile</h3>
+                <h3>My Dashboard</h3>
                 <button id="createCard">Create a card</button>
                 <!-- The Modal -->
-                    <div id="createCardModal" class="modal">
-                    <!-- Modal content -->
+                <div id="createCardModal" class="modal">
+                <!-- Modal content -->
                     <div class="modal-content">
                         <span class="close">&times;</span>
                         <form id="newCardForm">
                             <h2>Create a new card</h2>
-                            <input type="text" name="name" placeholder="Name" id="newCardName"><br>
+                            <input type="text" name="name" placeholder="Event Name" id="newCardName"><br>
                             <input type="text" name="name" placeholder="Enter a Time: 00:00:00" id="newCardTime"><br>
                             <textarea id="newCardDescription" placeholder="Description" data-id={{id}}></textarea><br>
+                            {{> widget}}
                             <button id="newCardPost">Post</button>
                         </form>
                     </div>
 
-                    </div>
-
+                </div>
+                <div>
+                {{> mycards }}
+                </div>
+                <div>
+                {{> groupcards }}
+                </div>
 
 
             </div>

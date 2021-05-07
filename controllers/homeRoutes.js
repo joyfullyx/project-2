@@ -360,6 +360,7 @@ router.get('/logout', async (req, res) => {
   if (req.session.logged_in) {
       req.session.destroy(() => {
           res.status(204).end();
+
       });
     if (!req.session) {
       res.redirect('/login');

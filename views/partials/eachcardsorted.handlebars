@@ -1,13 +1,18 @@
 
-
 <div class="card">
-    <a href="/cards/{{id}}"><h3>{{event_name}}</h3>
-    <p>{{event_city}}, {{event_state}}</p>
-    <p>{{event_description}}</p>
-    <h6 id="date">{{event_date}}</h6>
-    <h6 id="time">{{event_time}}</h6>
+    <a href="/cards/{{id}}">
+    <div class="card-header">
+        <h3>{{event_name}}</h3>
+    </div>
+    <div class="card-body">
+        <p>{{event_city}}, {{event_state}}</p>
+        <p>{{event_description}}</p>
+
+    </div>
     </a>
+    <div id='fade'></div>
+    <div id='info'>
+
+        <h6 id="time">posted at: {{event_time}} </h6>
+    </div>
 </div>
-
-{{!-- find way to make all new cards show --}}
-

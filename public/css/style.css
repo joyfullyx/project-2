@@ -128,6 +128,7 @@ button {
     align-content: flex-start;
     width: 100%;
     height: 70vh;
+    position: relative;
 }
 #rightDiv {
     /* background-color:lightblue; */
@@ -172,10 +173,13 @@ button {
     width: 250px;
     height: 160px;
     margin: 10px;
+    padding-bottom: 20px;
     border-radius: 6px;
     background-color: white;
     display: flex;
+    position: relative;
     flex-direction: column;
+    overflow: hidden;
     box-shadow:
     0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048),
@@ -185,14 +189,38 @@ button {
     0 100px 80px rgba(0, 0, 0, 0.12);
 }
 
+#fade {
+    content: "";
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 4.5em;
+    /* background-color:pink; */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 60%);
+  } 
+
+  #info {
+    border-top: 1px dotted #bdbdbd;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 2em;
+    position: absolute;
+    z-index: 11;
+  }
+
 .card h3 {
     font-family: 'brandon grotesque', sans-serif;
-    font-size: 1em;
+    font-size: .9em;
     color:#23262F;
     background-color: #e0e0e0;
     border-radius: 6px 6px 0px 0px;
-    padding: 4px;
+    padding: 5px 5px 5px 20px;
     height: 35px;
+    line-height: 1.2;
+    /* display: inline-block; */
     vertical-align: middle;
 }
 
@@ -201,15 +229,30 @@ button {
     font-size: .8em;
     line-height: 1.2em;
     color:#23262F;
-    padding: 4px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .card a {
     text-decoration: none;
+    vertical-align: middle;
+}
+
+.card-header {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
 }
 
 #time {
-    display: none;
+    /* display: none; */
+    font-family: 'brandon grotesque', sans-serif;
+    font-size: .6em;
+    padding-top: 10px;
+    padding-left: 20px;
+    color: #bdbdbd;
 }
 
 #date {
@@ -275,29 +318,40 @@ button {
 
 .commentDelBtn {
     width: 6em;
+    height: 2.2em;
     margin: 15px;
     border: 1px solid #e0e0e0;
-    color:#23262F;
+    color:rgb(132, 132, 132);
     background-color:white;
     font-family: 'brandon grotesque', sans-serif;
     font-size: .6em;
-    padding: 2px;
+    padding: 0;
     margin:0;
 
 }
 
 #commentBlock {
-    padding: 5px 10px 15px 30px;
+    padding: 5px 10px 0px 30px;
     border-bottom: 1px dotted lightgrey;
-
+    display: flex;
+    justify-content: space-between;
+    /* flex-direction: column; */
 }
 
 #commentBlock p {
     color: rgb(132, 132, 132);
     font-size: .8em;
     line-height: 1.5em;
-    padding: 0 0 10px 0;
+    padding: 5px 0 10px 0;
     /* margin: 0; */
+}
+
+#newComment {
+    border-radius: 6px;
+    margin:0 20px 0 20px;
+    width: 93%;
+    font-family: 'brandon grotesque', sans-serif;
+    font-size: .8em;
 }
 
 /* ------------------------------------------- */
@@ -322,7 +376,7 @@ nav li {
 }
 
 
-
+/* ------------------------------------------- */
 /* MODAL STYLING */
 /* The Modal (background) */
 .modal {
@@ -362,6 +416,7 @@ nav li {
     text-decoration: none;
     cursor: pointer;
   }
+/* ------------------------------------------- */
 
 
   /*  Form styling  */

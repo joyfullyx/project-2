@@ -14,8 +14,13 @@ header {
     align-items: flex-end;
 }
 
+
 #header-left, #header-right {
     width: 250px;
+}
+
+main {
+    background: #f1f1f1;
 }
 
 #filterbar li {
@@ -128,6 +133,7 @@ button {
     align-content: flex-start;
     width: 100%;
     height: 70vh;
+    position: relative;
 }
 #rightDiv {
     /* background-color:lightblue; */
@@ -172,10 +178,13 @@ button {
     width: 250px;
     height: 160px;
     margin: 10px;
+    padding-bottom: 20px;
     border-radius: 6px;
     background-color: white;
     display: flex;
+    position: relative;
     flex-direction: column;
+    overflow: hidden;
     box-shadow:
     0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048),
@@ -185,14 +194,38 @@ button {
     0 100px 80px rgba(0, 0, 0, 0.12);
 }
 
+#fade {
+    content: "";
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 4.5em;
+    /* background-color:pink; */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 60%);
+  } 
+
+  #info {
+    border-top: 1px dotted #bdbdbd;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 2em;
+    position: absolute;
+    z-index: 11;
+  }
+
 .card h3 {
     font-family: 'brandon grotesque', sans-serif;
-    font-size: 1em;
+    font-size: .9em;
     color:#23262F;
-    background-color: #e0e0e0;
+    background-color: rgb(224, 224, 224);
     border-radius: 6px 6px 0px 0px;
-    padding: 4px;
+    padding: 5px 5px 5px 20px;
     height: 35px;
+    line-height: 1.2;
+    /* display: inline-block; */
     vertical-align: middle;
 }
 
@@ -201,15 +234,30 @@ button {
     font-size: .8em;
     line-height: 1.2em;
     color:#23262F;
-    padding: 4px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .card a {
     text-decoration: none;
+    vertical-align: middle;
+}
+
+.card-header {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
 }
 
 #time {
-    display: none;
+    /* display: none; */
+    font-family: 'brandon grotesque', sans-serif;
+    font-size: .6em;
+    padding-top: 10px;
+    padding-left: 20px;
+    color: #bdbdbd;
 }
 
 #date {
@@ -223,6 +271,7 @@ button {
     border-radius: 6px;
     background-color: white;
     display: flex;
+    position: relative;
     flex-direction: column;
     box-shadow:
     0 2.8px 2.2px rgba(0, 0, 0, 0.034),
@@ -237,10 +286,18 @@ button {
     font-family: 'brandon grotesque', sans-serif;
     font-size: 1.2em;
     color:#23262F;
-    background-color: #e0e0e0;
+    background-color: rgb(224, 224, 224);
     border-radius: 6px 6px 0px 0px;
-    padding: 15px;
+    padding: 20px 50px 10px 30px;
     height: 35px;
+    vertical-align: middle;
+}
+
+.carddetail h6 {
+    font-family: 'brandon grotesque', sans-serif;
+    font-size: .8em;
+    color:#23262F;
+    padding: 30px 30px 0px 30px;
     vertical-align: middle;
 }
 
@@ -249,7 +306,13 @@ button {
     font-size: 1em;
     line-height: 1.2em;
     color:#23262F;
-    padding: 15px;
+    padding: 10px 30px 30px 30px;
+}
+
+.carddetail .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
 
 .carddetail a {
@@ -275,34 +338,113 @@ button {
 
 .commentDelBtn {
     width: 6em;
+    height: 2.2em;
     margin: 15px;
     border: 1px solid #e0e0e0;
-    color:#23262F;
+    color:rgb(132, 132, 132);
     background-color:white;
     font-family: 'brandon grotesque', sans-serif;
     font-size: .6em;
-    padding: 2px;
+    padding: 0;
     margin:0;
 
 }
 
 #commentBlock {
-    padding: 5px 10px 15px 30px;
-    border-bottom: 1px dotted lightgrey;
-
+    padding: 5px 10px 0px 30px;
+    border-top: 1px dotted lightgrey;
+    display: flex;
+    justify-content: space-between;
+    /* flex-direction: column; */
 }
 
 #commentBlock p {
     color: rgb(132, 132, 132);
     font-size: .8em;
     line-height: 1.5em;
-    padding: 0 0 10px 0;
+    width:85%;
+    padding: 5px 0 10px 0;
     /* margin: 0; */
+}
+
+#newCommentForm {
+    display:flex;
+    align-content:space-between;
+    min-height: 70px;
+}
+
+#newComment {
+    border: 0;
+    border-radius: 0 0 6px 6px;
+    background-color: #eeeeee; 
+    padding-left:30px;
+    padding-top:10px;
+    border-top: 1px solid lightgrey;
+    margin:0;
+    width: 100%;
+    font-family: 'brandon grotesque', sans-serif;
+    font-size: .9em;
+    resize: none;
+}
+
+#newCommentForm button {
+    width: 6em;
+    border-radius: 0 0 6px 0;
+    font-family: 'material icons';
+    color:#f18b86;
+    padding:5px;
 }
 
 /* ------------------------------------------- */
 
 
+#newCardPost {
+    width: 30%;
+    height: 48px;
+    border-radius:6px;
+    margin: 10px 0 10px 0;
+}
+
+#footer {
+    display:flex;
+    justify-content:space-between;
+    width:80%;
+}
+
+#form {
+    display:flex;
+    flex-direction:column;
+    width:50%;
+    padding-top:100px;
+}
+
+#form h3 {
+    font-family: 'brandon grotesque', sans-serif;
+    font-size: 1.8em;
+    line-height: 1.2em;
+    color:#23262F;
+    margin-bottom: 30px;
+}
+
+#loginEmail {
+    width:100%;
+}
+
+#loginPassword {
+    width:100%;
+}
+
+#upload_widget {
+    width: 30%;
+    height: 48px;
+    border-radius:6px;
+    margin: 10px 0 10px 0;
+}
+
+#loginForm button {
+    margin-top:5px;
+    margin-bottom:5px;
+}
 
 .mycard {
     width: 180px;
@@ -322,13 +464,13 @@ nav li {
 }
 
 
-
+/* ------------------------------------------- */
 /* MODAL STYLING */
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 12; /* Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -362,6 +504,7 @@ nav li {
     text-decoration: none;
     cursor: pointer;
   }
+/* ------------------------------------------- */
 
 
   /*  Form styling  */

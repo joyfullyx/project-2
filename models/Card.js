@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+const moment = require('moment');
 
 class Card extends Model {}
 
@@ -35,15 +36,27 @@ Card.init(
           type: DataTypes.STRING,
           allowNull: true,
         },
+        // event_date: {
+        //   type: DataTypes.DATE,
+        //   allowNull: false,
+        //   defaultValue: DataTypes.NOW,
+        // },
         event_date: {
-          type: DataTypes.DATE,
-          allowNull: false,
-          defaultValue: DataTypes.NOW,
+          type: DataTypes.DATEONLY,
+          get: function() {
+            return moment(this.getDataValue('event_date')).format('ll')
+          }
         },
+        // event_time: {
+        //     type: DataTypes.TIME,
+        //     allowNull: false,
+        //     defaultValue: '06:00:00',
+        // },
         event_time: {
-            type: DataTypes.TIME,
-            allowNull: false,
-            defaultValue: '06:00:00',
+          type: DataTypes.TIME,
+          get: function() {
+            return moment(this.getDataValue('event_time'), "hh:mm:ss").format('hh:mm A');
+          }
         },
         image_path: {
           type: DataTypes.STRING,

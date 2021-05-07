@@ -10,7 +10,8 @@ newComment.addEventListener("submit", event => {
     const fetchObj = {
         content: textarea.value,
     }
-    axios.post(`/api/comments/${textarea.getAttribute("data-id")}`, fetchObj)
+    const dataid = textarea.getAttribute("data-id");
+    axios.post(`/api/comments/${dataid}`, fetchObj)
     .then((data) => {
         console.log(data);
         location.reload();
@@ -32,7 +33,6 @@ delBtns.forEach(button=> {
             console.log(res)
         } else {
             alert("Congrats you played yaself")
-            res.redirect('/');
         }
         location.reload();
         })

@@ -299,10 +299,8 @@ router.get('/profile', withAuth, async(req, res) => {
     const user = await userData.get({ plain: true });
     const cardData = await Card.findAll(req.params.id, {
       include: [
-        {
-          model: User,
-          model: Comment
-        }
+        { model: User },
+        { model: Comment }
       ]
     })
 
@@ -324,7 +322,7 @@ router.get('/profile', withAuth, async(req, res) => {
       return card.get({ plain: true });
     });
     const allCards = cards.map((card) => card.get({plain: true}));
-    console.log("cards: ", allCards);
+    console.log("cards: ", allCards, user);
     res.render('profile', {
       card: allCards,
       ...user,
@@ -360,8 +358,9 @@ router.get('/logout', async (req, res) => {
       req.session.destroy(() => {
           res.status(204).end();
       });
+    if (!req.session) {
       res.redirect('/');
-      location.reload();
+    };
   } else {
       res.status(404).end();
   }

@@ -2,6 +2,7 @@ const router = require('express').Router({mergeParams: true});
 const { Comment, Card } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+//Retrieve Comment Route
 router.get('/', withAuth, async (req, res) => {
     try{
         const commentData = await Comment.findAll({
@@ -14,7 +15,7 @@ router.get('/', withAuth, async (req, res) => {
         console.log(err);
     }
 })
-
+//Post Comment Route
 router.post('/:id', withAuth, async (req, res) => {
     console.log("THIS IS req.params", req.params);
     try {
@@ -30,6 +31,26 @@ router.post('/:id', withAuth, async (req, res) => {
     }
 });
 
+//Update Comment Route
+router.put('/:id', async (req, res) => {
+    try{
+      const editComment = await Comment.update(
+        {
+          where: {
+            id: req.params.id,
+          }
+        },
+        {
+          content: req.body.content,
+        }
+        )
+      res.json(200).json(editComment);
+      } catch (err) {
+        res.json(err);
+      }
+  });
+
+//Delete Comment Route
 router.delete('/:id', withAuth, async (req, res) => {
     try {
         const commentData = await Comment.destroy({

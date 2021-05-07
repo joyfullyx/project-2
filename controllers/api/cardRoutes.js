@@ -18,7 +18,7 @@ router.get('/', withAuth, async (req, res) => {
         console.log(err);
     }
 });
-
+//Finds one card
 router.get('/:id', withAuth, async (req, res) => {
   try {
     const cardData = await Card.findOne({
@@ -76,6 +76,28 @@ router.post('/', withAuth, async (req, res) => {
     res.status(400).json(err);
     console.log(err);
   }
+});
+
+//Update Card
+router.put('/:id', async (req, res) => {
+  try{
+    const editCard = await Card.update(
+      {
+        where: {
+          id: req.params.id,
+        }
+      },
+      {
+        event_name: req.body.event_name,
+        event_description: req.body.event_description,
+        event_date: req.body.event_date,
+        event_time: req.body.event_time,
+      }
+      )
+    res.json(200).json(editCard);
+    } catch (err) {
+      res.json(err);
+    }
 });
 
 // delete card

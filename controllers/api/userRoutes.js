@@ -4,6 +4,7 @@ const geoip = require('geoip-lite');
 const sequelize = require('sequelize');
 const { getDistanceLatLonToMiles } = require('../../utils/geo');
 
+//Retrieve all Users api
 router.get('/', async (req, res) => {
 
   const userData = await User.findAll({
@@ -16,7 +17,7 @@ router.get('/', async (req, res) => {
   res.json(userData);
 });
 
-
+//Signup new user 
 router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
@@ -34,6 +35,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+//Login as existing user
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
@@ -66,6 +68,28 @@ router.post('/login', async (req, res) => {
   }
 });
 
+router.put('/:id', async (req, res) => {
+  try{
+    const editUser = await User.update(
+      {
+        where: {
+          id: req.params.id,
+        }
+      },
+      {
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        organization: req.body.organization,
+        event_time: req.body.event_time,
+      }
+      )
+    res.json(200).json(editUser);
+    } catch (err) {
+      res.json(err);
+    }
+});
+
+//Logout Route
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {

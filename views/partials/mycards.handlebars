@@ -2,15 +2,9 @@
 
 <h4>My Cards</h4>
 
-currUser
-
   
-{{#each card}}
-{{#ifCond "{{user_id}}" "{{currUser}}"}}
-    <p>{{currUser}} equals {{user_id}}</p>
-{{else}}
-    <p>no match</p>
-{{/ifCond}}
+{{#each myCards}}
+{{event_name}}
 {{/each}}
 
 

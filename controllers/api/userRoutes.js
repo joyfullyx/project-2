@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
     attributes: {
       exclude: ['password']
     },
+    include: [{ model: Card }],
   }).catch((err) => {
       res.json(err);
   });
@@ -68,6 +69,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
+//Update User Route
 router.put('/:id', async (req, res) => {
   try{
     const editUser = await User.update(

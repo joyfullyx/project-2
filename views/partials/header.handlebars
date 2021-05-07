@@ -1,12 +1,14 @@
-    <header id="header">
-        <div id="nav">
-            <div id="header-left"></div>
+<header id="header">
+    <div id="nav">
+        <div id="header-left"></div>
             <div id="logo">
-                <h1>CIRCLE</h1>
-                <h3>COMMUNITY BULLETIN</h3>
+                <a href="/">
+                    <h1>CIRCLE</h1>
+                    <h3>COMMUNITY BULLETIN</h3>
+                </a>
             </div>
-            <div id="header-right">
-              <p>{{#if logged_in}}Welcome {{username}} &nbsp;&nbsp;|&nbsp;&nbsp;<a href="/logout">logout</a>{{/if}}{{#unless logged_in}}<a href="/login" target="_parent">login</a> &nbsp;&nbsp;|&nbsp;&nbsp;<a href="/signup">signup</a>{{/unless}}</p>
-            </div>
+        <div id="header-right">
+            <p>{{#if logged_in}}Welcome {{username}} &nbsp;&nbsp;|&nbsp;&nbsp;<a href="/logout">Log Out</a>{{/if}}{{#unless logged_in}}<a href="/login" target="_parent">Log In</a> &nbsp;&nbsp;|&nbsp;&nbsp;<a href="/signup">Sign Up</a>{{/unless}}</p>
         </div>
-    </header>
+    </div>
+</header>

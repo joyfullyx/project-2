@@ -29,6 +29,7 @@
     "express-session": "^1.17.1",
     "geoip-lite": "^1.4.2",
     "geolocation": "^0.2.0",
+    "moment": "^2.29.1",
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.7",
     "request": "^2.88.2",

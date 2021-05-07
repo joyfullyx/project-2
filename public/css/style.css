@@ -215,7 +215,7 @@ button {
     font-family: 'brandon grotesque', sans-serif;
     font-size: .9em;
     color:#23262F;
-    background-color: #e0e0e0;
+    background-color: rgb(224, 224, 224);
     border-radius: 6px 6px 0px 0px;
     padding: 5px 5px 5px 20px;
     height: 35px;
@@ -280,10 +280,18 @@ button {
     font-family: 'brandon grotesque', sans-serif;
     font-size: 1.2em;
     color:#23262F;
-    background-color: #e0e0e0;
+    background-color: rgb(224, 224, 224);
     border-radius: 6px 6px 0px 0px;
-    padding: 15px;
+    padding: 20px 30px 10px 30px;
     height: 35px;
+    vertical-align: middle;
+}
+
+.carddetail h6 {
+    font-family: 'brandon grotesque', sans-serif;
+    font-size: .8em;
+    color:#23262F;
+    padding: 30px 30px 0px 30px;
     vertical-align: middle;
 }
 
@@ -292,7 +300,7 @@ button {
     font-size: 1em;
     line-height: 1.2em;
     color:#23262F;
-    padding: 15px;
+    padding: 10px 30px 30px 30px;
 }
 
 .carddetail a {
@@ -332,7 +340,7 @@ button {
 
 #commentBlock {
     padding: 5px 10px 0px 30px;
-    border-bottom: 1px dotted lightgrey;
+    border-top: 1px dotted lightgrey;
     display: flex;
     justify-content: space-between;
     /* flex-direction: column; */
@@ -342,16 +350,37 @@ button {
     color: rgb(132, 132, 132);
     font-size: .8em;
     line-height: 1.5em;
+    width:85%;
     padding: 5px 0 10px 0;
     /* margin: 0; */
 }
 
+#newCommentForm {
+    display:flex;
+    align-content:space-between;
+    min-height: 70px;
+}
+
 #newComment {
-    border-radius: 6px;
-    margin:0 20px 0 20px;
-    width: 93%;
+    border: 0;
+    border-radius: 0 0 6px 6px;
+    background-color: #eeeeee; 
+    padding-left:30px;
+    padding-top:10px;
+    border-top: 1px solid lightgrey;
+    margin:0;
+    width: 100%;
     font-family: 'brandon grotesque', sans-serif;
-    font-size: .8em;
+    font-size: .9em;
+    resize: none;
+}
+
+#newCommentForm button {
+    width: 6em;
+    border-radius: 0 0 6px 0;
+    font-family: 'material icons';
+    color:#f18b86;
+    padding:5px;
 }
 
 /* ------------------------------------------- */

@@ -18,6 +18,7 @@ router.get('/', withAuth, async (req, res) => {
         console.log(err);
     }
 });
+
 //Finds one card
 router.get('/:id', withAuth, async (req, res) => {
   try {
@@ -29,12 +30,15 @@ router.get('/:id', withAuth, async (req, res) => {
     });
 
     const allCards = cardData.get({plain: true});
+    
     res.status(200).json(allCards);
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
   }
 })
+
+
 
 // create new card
 router.post('/', withAuth, async (req, res) => {

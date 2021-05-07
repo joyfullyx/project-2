@@ -266,6 +266,7 @@ button {
     border-radius: 6px;
     background-color: white;
     display: flex;
+    position: relative;
     flex-direction: column;
     box-shadow:
     0 2.8px 2.2px rgba(0, 0, 0, 0.034),
@@ -282,7 +283,7 @@ button {
     color:#23262F;
     background-color: rgb(224, 224, 224);
     border-radius: 6px 6px 0px 0px;
-    padding: 20px 30px 10px 30px;
+    padding: 20px 50px 10px 30px;
     height: 35px;
     vertical-align: middle;
 }
@@ -301,6 +302,12 @@ button {
     line-height: 1.2em;
     color:#23262F;
     padding: 10px 30px 30px 30px;
+}
+
+.carddetail .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
 
 .carddetail a {
@@ -386,6 +393,20 @@ button {
 /* ------------------------------------------- */
 
 
+#newCardPost {
+    width: 30%;
+    height: 48px;
+    border-radius:6px;
+    margin: 10px 0 10px 0;
+
+}
+
+#upload_widget {
+    width: 30%;
+    height: 48px;
+    border-radius:6px;
+    margin: 10px 0 10px 0;
+}
 
 .mycard {
     width: 180px;
@@ -411,7 +432,7 @@ nav li {
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 12; /* Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */

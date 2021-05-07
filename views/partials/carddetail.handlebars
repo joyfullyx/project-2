@@ -1,14 +1,16 @@
 
 
 <div class="carddetail">
-        <a href="/cards/{{id}}"><h3>{{event_name}}</h3></a>
+        <a href="/cards/{{id}}">
+        <a href="/" class="close">&times;</a>
+        <h3>{{event_name}}</h3></a>
         <h6>Posted by {{user.username}} at {{event_time}}</h6>
         <p>{{event_description}}</p>
         <h6 id="date">{{event_date}}</h6>
         <p style="color:lightgrey; border-bottom: 1px dotted lightgrey; padding-bottom:0">comments</p>
             {{#each comments}}
             <div id="commentBlock">
-                <p>{{content}}</p>
+                <p>{{content}} from {{user}}</p>
                 <button class="commentDelBtn" data-id={{id}}>Delete</button>
             </div>
             {{/each}}

@@ -119,11 +119,11 @@ router.get('/cards/:id', async (req, res) => {
       const cardData = await Card.findByPk(req.params.id, {
         include: [
           {model: User},
-          {model: Comment},
+          {model: Comment, include: [User]},
         ],
       });
       const card = cardData.get({ plain: true });
-  
+      console.log(JSON.stringify(card, null, 2));
       // const commentData = await Comment.findByPk(req.params.id);
       // if(commentData){
         // const comment = commentData.get({ plain: true});
@@ -244,9 +244,11 @@ router.get('/profile', withAuth, async(req, res) => {
       return card.get({ plain: true });
     });
     const allCards = cards.map((card) => card.get({plain: true}));
-    console.log("cards: ", allCards, user);
+    const filterCards = allCards.filter(card => card.user_id == req.session.user_id);
+    console.log("cards: ", allCards);
     res.render('profile', {
       card: allCards,
+      myCards: filterCards,
       ...user,
       logged_in: true, 
       currUser: req.session.user_id //test line

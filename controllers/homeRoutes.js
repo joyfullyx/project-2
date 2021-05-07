@@ -199,16 +199,17 @@ router.get('/cards/:id', async (req, res) => {
 
       const cardData = await Card.findByPk(req.params.id, {
         include: [
-          {
-            model: User,
-            model: Comment,
-          },
+          {model: User},
+          {model: Comment},
         ],
       });
       const card = cardData.get({ plain: true });
   
-      res.render('viewcard', {...card, card: card, ...user, logged_in: req.session.logged_in});
-      console.log(card.id);
+      const commentData = await Comment.findAll();
+      const comments = commentData.map((comment) => comment.get({ plain: true }));
+
+      res.render('viewcard', {...card, card: card, ...user, comment: comments, logged_in: req.session.logged_in});
+      console.log(comments);
     } catch (err) {
         res.status(500).json(err);
         console.log(err);
@@ -359,7 +360,7 @@ router.get('/logout', async (req, res) => {
           res.status(204).end();
       });
     if (!req.session) {
-      res.redirect('/');
+      res.redirect('/login');
     };
   } else {
       res.status(404).end();

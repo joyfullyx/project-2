@@ -30,3 +30,10 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+var myCard = document.getElementsByClassName("myCard")
+console.log(myCard);
+
+myCard.onhover = function() {
+  console.log('click');
+};

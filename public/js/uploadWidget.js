@@ -44,32 +44,18 @@ var myWidget = cloudinary.createUploadWidget(
   },
   (error, result) => {
     if (!error && result && result.event === "success") {
-      console.log("Done! Here is the image info: ", result.info);
-      
-    
-      //console.log(document.location.protocol + cloudinaryImageRoot + result.info.path)
-      const imgSrcUrl = result.info.secure_url;
-      console.log('image source url: ', imgSrcUrl)
-      console.log(`<span><img src="${imgSrcUrl}"></span>`)
+      const uploadedImageUrl = result.info.secure_url;
+      var input = document.createElement("input");
 
-      // TODO: associate with correct card record
-      // TODO: lookup correct path to card API instead of hard coding
-      fetch(`/api/cards`).then(response => response.json()).then(card => {
-        console.log("Got card: ", card);
+      input.setAttribute("type", "hidden");
 
-        const imagePath = result.info;
-        console.log('image path: ', imagePath);
+      input.setAttribute("name", "hidden uploaded url");
+      input.setAttribute("id", "uploadedImageUrl");
 
-        fetch(`/api/cards/`, {
-          headers: { },  // auth header here?
-          method: 'POST',
-          body: JSON.stringify(card)
-        }).then(response => response.json()).then(updatedCard => {
-          console.log("Updated card is:");
-          console.log(updatedCard);
-        });
-      });
+      input.setAttribute("value", uploadedImageUrl);
 
+      //append to form element that you want .
+      document.getElementById("newCardForm").appendChild(input);
     }
   }
 
@@ -77,8 +63,6 @@ var myWidget = cloudinary.createUploadWidget(
 
 // 'http://localhost:3001/api/cards/1
 
-
-})
 
 imgBtn.addEventListener('click', event => {
   event.preventDefault();

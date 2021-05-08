@@ -6,7 +6,7 @@
         <h3>{{event_name}}</h3></a>
         <h6>Posted by {{user.username}} at {{event_time}}</h6>
         <p>{{event_description}}</p>
-        <img id="eventImg" src="" alt="image description">
+        <img id="cardImg" src={{image_path}} alt="image description" height="200px", width="200px">
         <h6 id="date">{{event_date}}</h6>
         <p style="color:lightgrey; border-bottom: 1px dotted lightgrey; padding-bottom:0">comments</p>
             {{#each comments}}

@@ -5,23 +5,9 @@
         <div id="container">
             <div id="mainDiv">
             {{>carddetail}}
-    {{!-- <div class="card">
-        <a href="/cards/{{id}}"><h3>{{event_name}}</h3></a>
-        <p>{{event_description}}</p>
-        <h6>{{event_date}}</h6>
-        <h6>{{event_time}}</h6>
-        <h6>{{user.username}}</h6>
-        {{#each comments}}
-            <p>{{content}}</p>
-            <button class="commentDelBtn" data-id={{id}}>Delete</button>
-        {{/each}}
-        <form id="newCommentForm">
-            <textarea id="newComment" placeholder="Add a Comment" data-id={{id}}></textarea>
-            <button>Add Comment</button>
-        </form> --}}
-        <button class="cardDelBtn" data-id={{id}}>Delete</button>
-    </div> --}}
-            </div> 
+
+            <button class="cardDelBtn" data-id={{id}}>Delete</button>
+            </div>
             {{#if logged_in}} {{>sidebar}} {{/if}}
         </div>
 

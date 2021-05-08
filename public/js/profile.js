@@ -34,6 +34,41 @@ window.onclick = function(event) {
 var myCard = document.getElementsByClassName("myCard")
 console.log(myCard);
 
-myCard.onhover = function() {
+myCard.onclick = function() {
   console.log('click');
 };
+
+openCard = document.querySelectorAll(".myCard");
+delCard = document.querySelectorAll(".myCardDelete");
+
+
+openCard.forEach(button=> {
+  button.addEventListener("click", (event) => {
+      event.preventDefault();
+      const idToOpen = button.getAttribute('id');
+      location.replace(`/cards/${idToOpen}`);
+  })
+});
+
+delCard.forEach(button=> {
+  button.addEventListener("click", (event) => {
+      event.preventDefault();
+      // console.log(delCard);
+      const idToDelete = button.getAttribute('id');
+      console.log(idToDelete);
+      // location.replace(`/cards/${idToOpen}`);
+
+      
+      fetch(`/api/cards/${idToDelete}`, {
+          method: "DELETE"
+      }).then(res => {
+      if(!res.ok) {
+          // alert("No card exists")
+      } else {
+          console.log(res)
+          // alert("card deleted")
+          location.reload();
+      }
+      })
+  })
+});

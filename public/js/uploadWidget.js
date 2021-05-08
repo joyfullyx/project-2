@@ -50,18 +50,15 @@ var myWidget = cloudinary.createUploadWidget(
       //console.log(document.location.protocol + cloudinaryImageRoot + result.info.path)
       const imgSrcUrl = result.info.secure_url;
       console.log('image source url: ', imgSrcUrl)
-      console.log(`<span><img src="${imgSrcUrl}"></span>`)
+      // console.log(`<span><img src="${imgSrcUrl}"></span>`)
 
       // TODO: associate with correct card record
       // TODO: lookup correct path to card API instead of hard coding
       fetch(`/api/cards`).then(response => response.json()).then(card => {
         console.log("Got card: ", card);
-
-        const imagePath = result.info;
-        console.log('image path: ', imagePath);
-
+        console.log("stringified", JSON.stringify(card))
         fetch(`/api/cards/`, {
-          headers: { },  // auth header here?
+          headers: {'Content-Type': 'application/json'},  // auth header here?
           method: 'POST',
           body: JSON.stringify(card)
         }).then(response => response.json()).then(updatedCard => {
@@ -77,8 +74,6 @@ var myWidget = cloudinary.createUploadWidget(
 
 // 'http://localhost:3001/api/cards/1
 
-
-})
 
 imgBtn.addEventListener('click', event => {
   event.preventDefault();

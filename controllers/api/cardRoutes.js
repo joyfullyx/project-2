@@ -42,7 +42,7 @@ router.get('/:id', withAuth, async (req, res) => {
 
 // create new card
 router.post('/', withAuth, async (req, res) => {
-  console.log();
+  console.log('in card post');
   try {
     const forwardedIpsStr = req.header("x-forwarded-for");
 
@@ -60,6 +60,8 @@ router.post('/', withAuth, async (req, res) => {
       ip = forwardedIps = forwardedIpsStr.split(",")[0];
     }
 
+    debugger
+
     const newCard = await Card.create({
       event_name: req.body.event_name,
       event_city: city,
@@ -68,10 +70,12 @@ router.post('/', withAuth, async (req, res) => {
       event_location_lon: lon,
       event_description: req.body.event_description,
       event_time: req.body.event_time,
+      image_path: res.info.secure_url,
       user_id: req.session.user_id,
     });
     console.log("newcard: ", newCard);
 
+    debugger
 
     const card = newCard.get({ plain: true });
     console.log('logging new card: ', card);

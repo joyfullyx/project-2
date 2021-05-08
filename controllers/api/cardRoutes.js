@@ -61,6 +61,8 @@ router.post('/', withAuth, async (req, res) => {
     }
 
     debugger
+    console.log(req.body)
+    console.log(req.body.event_name)
 
     const newCard = await Card.create({
       event_name: req.body.event_name,
@@ -70,12 +72,11 @@ router.post('/', withAuth, async (req, res) => {
       event_location_lon: lon,
       event_description: req.body.event_description,
       event_time: req.body.event_time,
-      image_path: res.info.secure_url,
+      image_path: req.body.image_path,
       user_id: req.session.user_id,
     });
     console.log("newcard: ", newCard);
 
-    debugger
 
     const card = newCard.get({ plain: true });
     console.log('logging new card: ', card);

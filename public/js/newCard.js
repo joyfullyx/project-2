@@ -4,12 +4,14 @@ document.querySelector('#newCardForm').addEventListener("submit", event => {
     const eventDescription = document.querySelector('#newCardDescription');
     const eventTime = document.querySelector('#newCardTime');
     const cardImg = document.querySelector('#uploadedImageUrl')
-    const fetchObj = {
+    
+    const fetchObj = {     
         event_name: eventName.value,
         event_description: eventDescription.value,
         event_time: eventTime.value,
         image_path: cardImg.value,
     }
+
     console.log('fetchObj: ',fetchObj)
 
     axios.post(`/api/cards/`, fetchObj)

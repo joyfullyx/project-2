@@ -123,7 +123,6 @@ router.get('/cards/:id', async (req, res) => {
         ],
       });
       const card = cardData.get({ plain: true });
-      console.log(JSON.stringify(card, null, 2));
       // const commentData = await Comment.findByPk(req.params.id);
       // if(commentData){
         // const comment = commentData.get({ plain: true});

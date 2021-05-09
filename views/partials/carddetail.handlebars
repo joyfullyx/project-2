@@ -16,9 +16,10 @@
             <div id="commentBlock">
                 <p>{{user.username}}</p>
                 <p id="comCont" data-id={{id}}>{{content}}</p>
-                <button class="commentDelBtn" data-id={{id}}>Delete</button>
-                <button class="editComBtn" data-id={{id}}>Edit</button>
-                
+            {{#ifCond ../currUser user_id}}
+                <button class="commentDelBtn" data-id={{../id}}>Delete</button>
+                <button class="editComBtn" data-id={{../id}}>Edit</button>
+            {{/ifCond}}
             </div>
             {{/each}}
             </div>

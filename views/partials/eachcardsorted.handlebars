@@ -7,13 +7,15 @@
         </div>
     </div>
     <div class="card-body">
+        {{#if image_path}}
+        <img src={{image_path}}>
+        {{/if}}
         <p>{{event_city}}, {{event_state}}</p>
         <p>{{event_description}}</p>
     </div>
     </a>
     <div id='fade'></div>
     <div id='info'>
-
-        <h6 id="time">posted at: {{event_time}} </h6>
+        <p id="time">POSTED AT: {{event_time}} </p>
     </div>
 </div>

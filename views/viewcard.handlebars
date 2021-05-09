@@ -5,9 +5,6 @@
         <div id="container">
             <div id="mainDiv">
             {{>carddetail}}
-            {{#ifCond currUser user_id}}
-            <button class="cardDelBtn" data-id={{../id}}>Delete</button>
-            {{/ifCond}}
             </div>
             {{#if logged_in}} {{>sidebar}} {{/if}}
         </div>

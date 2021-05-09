@@ -67,47 +67,50 @@ editComBtns.forEach(button => {
         const postedComments = document.querySelector('#commentContainer');
         const editBlock = document.querySelector('#editCommentBlock');
         const idToEdit = button.getAttribute('data-id');
-        const editBtn = document.querySelector('.editComBtn');
+        const editBtn = document.querySelectorAll('.editComBtn');
 
         
         console.log(idToEdit);
         postedComments.setAttribute("style", "display: none");
         editBlock.setAttribute("style", "display: flex");
-        editBtn.setAttribute('style', "display: none");
+        // editBtn.forEach(button => button.disabled = true);
         commitEditBtn.setAttribute('style', "display: flex");
 
         axios.get(`/api/comments/${idToEdit}`)
         .then((data) => {
             const commentText = data.data.content;
             textarea.value += commentText;
+            const useId = data.data.id;
             console.log(data);
             console.log(data.data.content);
+            
+            commitEditBtn.addEventListener("click", (event) => {
+                event.preventDefault();
+                const textarea = document.querySelector('#editComment');
+                const postedComments = document.querySelector('#commentContainer');
+                const editBlock = document.querySelector('#editCommentBlock');
+                const editBtn = document.querySelector('.editComBtn');
+                const idToEdit = editBtn.getAttribute('data-id');
+                
+                console.log(idToEdit);
+                postedComments.setAttribute("style", "display: flex");
+                editBlock.setAttribute("style", "display: none");
+                editBtn.setAttribute('style', "display: flex");
+                commitEditBtn.setAttribute('style', "display: none");
+                
+                const fetchObj = {
+                    content: textarea.value,
+                }
+                console.log(useId)
+                console.log("this be da fetch", fetchObj);
+                axios.put(`/api/comments/${useId}`, fetchObj)
+                .then((data) => {
+                    console.log("this be the data", data);
+                    location.reload();
+                }).catch(console.log)
+            })
         }).catch(console.log)
     })
 });
 
 
-commitEditBtn.addEventListener("click", (event) => {
-        event.preventDefault();
-        const textarea = document.querySelector('#editComment');
-        const postedComments = document.querySelector('#commentContainer');
-        const editBlock = document.querySelector('#editCommentBlock');
-        const editBtn = document.querySelector('.editComBtn');
-        const idToEdit = editBtn.getAttribute('data-id');
-
-        console.log(idToEdit);
-        postedComments.setAttribute("style", "display: flex");
-        editBlock.setAttribute("style", "display: none");
-        editBtn.setAttribute('style', "display: flex");
-        commitEditBtn.setAttribute('style', "display: none");
-
-        const fetchObj = {
-            content: textarea.value,
-        }
-        console.log("this be da fetch", fetchObj);
-        axios.put(`/api/comments/${idToEdit}`, fetchObj)
-        .then((data) => {
-            console.log("this be the data", data);
-            location.reload();
-        }).catch(console.log)
-    })

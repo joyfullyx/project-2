@@ -35,7 +35,7 @@ router.post('/:id', withAuth, async (req, res) => {
 });
 
 //Update Comment Route
-router.put('/:id', async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
     try{
       const editComment = await Comment.findOne(
         { where: {id: req.params.id} }

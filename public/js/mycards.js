@@ -6,7 +6,6 @@ delBtns3.forEach(button=> {
     button.addEventListener("click", (event) => {
         event.preventDefault();
         const idToDel = button.getAttribute('data-id');
-        console.log(idToDel)
         fetch(`/api/cards/${idToDel}`, {
             method: "DELETE"
         }).then(res => {
@@ -15,7 +14,6 @@ delBtns3.forEach(button=> {
         } else {
             console.log(res)
             location.replace('/profile');
-            alert("Congrats you played yaself")
         }
         })
     })

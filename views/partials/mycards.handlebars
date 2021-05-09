@@ -6,39 +6,36 @@
 {{/if}}
 
 {{#each myCards}}
-<a class="sideCard" href="/cards/{{id}}"><div class="sideCard">
+<a class="sideCard" href="/cards/{{id}}" id="{{id}}"><div class="sideCard">
     <p>{{event_name}}</p>
 </div></a>
 <div class="sideCardPost">
-    <p>edit</p>
+    <p class="myCardEdit" id="editCardBtn" id="editCardBtn">edit</p>
     <p class="sideDelBtn" data-id={{id}}>Delete</p>
 </div>
-    <div id="myCardPost">
-        <p class="myCardEdit" id="editCardBtn" id="editCardBtn">edit</p>
-        <p class="myCardDelete" id="{{id}}">delete</p>
-    </div>
+
      <div id="editCardModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
             <span class="editClose">&times;</span>
-            <form id="myCardEdit">
-                <h3 id="form">Edit your card</h3>
-                <input type="text" name="name" placeholder="Event Name" id="newCardName"><br>
-                <input type="time" name="time" placeholder="Enter a Time: 00:00:00" id="newCardTime"><br>
-                <input type="date" name="date" placeholder="Enter a Date: 00:00:00" id="newCardDate"><br>
-                <textarea id="newCardDescription" placeholder="Description" data-id={{id}}></textarea><br>
+            <form id="editCardForm">
+                <h3 id="editCardForm">Edit your card</h3>
+                <input type="text" name="name" value="{{event_name}}" id="editCardName"><br>
+                <input type="time" name="time" value="{{event_time}}" id="editCardTime"><br>
+                <input type="date" name="date" value="{{event_date}}" id="editCardDate"><br>
+                <textarea id="editCardDescription" value="{{event_description}}" data-id={{id}}></textarea><br>
                 <div id="footer">
                 {{> widget}}
-                <button id="newCardPost">Save edits</button>
+                <button id="editCardPost">Save edits</button>
                 </div>
             </form>
         </div>
     </div>
 {{/each}}
 
-{{/each}}
 
 
 
 <script src="/js/profile.js"></script>
 <script src="/js/mycards.js"></script>
+<script src="/js/editCard.js"></script>

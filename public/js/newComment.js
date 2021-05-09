@@ -113,4 +113,10 @@ editComBtns.forEach(button => {
     })
 });
 
+Handlebars.registerHelper('ifCond', function(currUser, cardUser, options) {
+    if(currUser === cardUser) {
+      return options.fn(this);
+    }
+    return options.inverse(this);
+  });
 

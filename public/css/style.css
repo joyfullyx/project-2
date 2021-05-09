@@ -125,7 +125,7 @@ button {
     border-radius: 6px;
 }
 
-#myCard {
+.myCard {
     display: table;
     border: none;
     /* padding: .5rem .8rem; */
@@ -153,7 +153,7 @@ button {
     /* 0 100px 80px rgba(0, 0, 0, 0.12); */
 }
 
-#myCard p {
+.myCard p {
     display: table-cell;
     vertical-align: middle;
     text-align: center;

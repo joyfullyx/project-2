@@ -1,19 +1,19 @@
 
 
-<h4>My Cards</h4>
 
-  
+{{#if myCards}}
+<h4>My Cards</h4>
+{{/if}}
+
 {{#each myCards}}
-<div id="myCard">
+<div class="myCard" id="{{id}}">
     <p>{{event_name}}</p>
 </div>
-<div id="myCardPost">
-    <p>edit</p>
-    <p>delete</p>
-</div>
-
+    <div id="myCardPost">
+        <p class="myCardEdit" id="{{id}}">edit</p>
+        <p class="myCardDelete" id="{{id}}">delete</p>
+    </div>
 {{/each}}
-
 
 
 

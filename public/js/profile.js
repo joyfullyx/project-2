@@ -34,16 +34,36 @@ window.onclick = function(event) {
 
 // Get and open modal for new card
 var editCardModal = document.getElementById("editCardModal");
-var editCardBtn = document.getElementById("editCardBtn");
-var editCardPut = document.getElementById("editCardPut");
+var editCardBtns = document.querySelectorAll("#editCardBtn");
+var editCardPut = document.querySelector("#editCardPut");
 
 // var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
-editCardBtn.onclick = function() {
-  console.log('click');
-  editCardModal.style.display = "block";
-}
+
+// let cardId = 0;
+// editCardBtns.forEach((button) => {
+//   button.onclick = function() {
+//     const editName = document.querySelector('#editCardName');
+//     const textarea = document.querySelector('#editCardDescription');
+//     const idToEdit = button.getAttribute('data-id');
+
+//     console.log(this);
+//     console.log(idToEdit);
+//     editCardModal.style.display = "block";
+
+//     axios.get(`/api/cards/${idToEdit}`)
+//     .then((data) => {
+//       const cardName = data.data.event_name;
+//       const cardText = data.data.event_description;
+//       let cardId = data.data.id;
+//       editName.value = cardName;
+//       textarea.value = cardText;
+//       console.log(cardId);  
+//     })
+//   }
+// })
+
 
 // When the user clicks on <span> (x), close the modal
 editSpan.onclick = function() {
@@ -51,9 +71,6 @@ editSpan.onclick = function() {
   editCardModal.style.display = "none";
 }
 
-editCardPut.onclick = function() {
-  modal.style.display = "none";
-}
 
 // When the user clicks anywhere outside of the modal, close it
 // window.onclick = function(event) {

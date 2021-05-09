@@ -10,7 +10,7 @@
     <p>{{event_name}}</p>
 </div></a>
 <div class="sideCardPost">
-    <p class="myCardEdit" id="editCardBtn" id="editCardBtn">edit</p>
+    <p class="myCardEdit" id="editCardBtn" data-id={{id}}>edit</p>
     <p class="sideDelBtn" data-id={{id}}>Delete</p>
 </div>
 
@@ -20,8 +20,8 @@
             <span class="editClose">&times;</span>
             <form id="editCardForm">
                 <h3 id="editCardForm">Edit your card</h3>
-                <input type="text" name="name" value="{{event_name}}" id="editCardName"><br>
-                <textarea id="editCardDescription" value="{{event_description}}" data-id={{id}}></textarea><br>
+                <input type="text" name="name" id="editCardName"><br>
+                <textarea id="editCardDescription" data-id={{id}}></textarea><br>
                 <div id="footer">
                 {{> widget}}
                 <button id="editCardPut">Save edits</button>

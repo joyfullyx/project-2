@@ -11,13 +11,22 @@
         {{/if}}
         <h6 id="date">{{event_date}}</h6>
         <p style="color:lightgrey; border-bottom: 1px dotted lightgrey; padding-bottom:0">comments</p>
+            <div id="commentContainer">
             {{#each comments}}
             <div id="commentBlock">
                 <p>{{user.username}}</p>
-                <p>{{content}}</p>
-                <button class="commentDelBtn" data-id={{id}}>Delete</button>
+                <p id="comCont" data-id={{id}}>{{content}}</p>
+            {{#ifCond ../currUser user_id}}
+                <button class="commentDelBtn" data-id={{../id}}>Delete</button>
+                <button class="editComBtn" data-id={{../id}}>Edit</button>
+            {{/ifCond}}
             </div>
             {{/each}}
+            </div>
+            <div id="editCommentBlock">
+                <textarea id="editComment" data-id={{id}}></textarea>
+                <button class="editComBtnCommit" data-id={{id}}>Commit</button>
+            </div>
         <form id="newCommentForm">
         <textarea id="newComment" placeholder="Add a Comment" data-id={{id}}></textarea>
         <button><span class="material-icons">send</span></button>

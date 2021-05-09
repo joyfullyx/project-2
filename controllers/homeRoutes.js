@@ -123,11 +123,10 @@ router.get('/cards/:id', async (req, res) => {
         ],
       });
       const card = cardData.get({ plain: true });
-      console.log(JSON.stringify(card, null, 2));
       // const commentData = await Comment.findByPk(req.params.id);
       // if(commentData){
         // const comment = commentData.get({ plain: true});
-        res.render('viewcard', {...user, ...card, card: card, logged_in: req.session.logged_in});
+        res.render('viewcard', {...user, ...card, card: card, logged_in: req.session.logged_in, currUser: req.session.user_id});
       // } else {
       //   res.render('viewcard', {...card, card: card, ...user, ...comment, logged_in: req.session.logged_in});
       // }

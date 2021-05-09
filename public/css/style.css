@@ -431,10 +431,47 @@ button {
 
 }
 
+.editComBtn {
+    width: 6em;
+    height: 2.2em;
+    margin: 15px;
+    border: 1px solid #e0e0e0;
+    color:rgb(132, 132, 132);
+    background-color:white;
+    font-family: 'brandon grotesque', sans-serif;
+    font-size: .6em;
+    padding: 0;
+    margin:0;
+
+}
+
+.editComBtnCommit {
+    display: none;
+    width: 6em;
+    height: 2.2em;
+    margin: 15px;
+    border: 1px solid #e0e0e0;
+    color:rgb(132, 132, 132);
+    background-color:white;
+    font-family: 'brandon grotesque', sans-serif;
+    font-size: .6em;
+    padding: 0;
+    margin:0;
+
+}
+
 #commentBlock {
     padding: 5px 10px 0px 30px;
     border-top: 1px dotted lightgrey;
     display: flex;
+    justify-content: space-between;
+    /* flex-direction: column; */
+}
+
+#editCommentBlock {
+    padding: 5px 10px 0px 30px;
+    border-top: 1px dotted lightgrey;
+    display: none;
     justify-content: space-between;
     /* flex-direction: column; */
 }
@@ -543,8 +580,6 @@ button {
     border-radius: 6px;
     background-color: #23262F;
 }
-
-
 
 nav ul {
     display: inline;

@@ -1,8 +1,9 @@
 // const { json } = require("sequelize/types");
 const newComment = document.querySelector('#newCommentForm');
-const delBtns = document.querySelectorAll(".commentDelBtn");
-const delBtns2 = document.querySelectorAll(".cardDelBtn");
-
+const delComBtns = document.querySelectorAll(".commentDelBtn");
+const delCardBtns = document.querySelectorAll(".cardDelBtn");
+const editComBtns = document.querySelectorAll(".editComBtn");
+const commitEditBtn = document.querySelector('.editComBtnCommit');
 
 newComment.addEventListener("submit", event => {
     event.preventDefault();
@@ -18,7 +19,7 @@ newComment.addEventListener("submit", event => {
     }).catch(console.log)
 });
 //Buttons for deleting comments
-delBtns.forEach(button=> {
+delComBtns.forEach(button=> {
     button.addEventListener("click", (event) => {
         event.preventDefault();
         const idToDel = button.getAttribute('data-id');
@@ -40,7 +41,7 @@ delBtns.forEach(button=> {
 });
 
 //Buttons for deleting cards
-delBtns2.forEach(button=> {
+delCardBtns.forEach(button=> {
     button.addEventListener("click", (event) => {
         event.preventDefault();
         const idToDel = button.getAttribute('data-id');
@@ -59,22 +60,57 @@ delBtns2.forEach(button=> {
     })
 });
 
+editComBtns.forEach(button => {
+    button.addEventListener("click", (event) => {
+        event.preventDefault();
+        const textarea = document.querySelector('#editComment');
+        const postedComments = document.querySelector('#commentContainer');
+        const editBlock = document.querySelector('#editCommentBlock');
+        const idToEdit = button.getAttribute('data-id');
+        const editBtn = document.querySelectorAll('.editComBtn');
 
-//     fetch(`/api/comments/:id`, {
-//         method: "POST",
-//         body: JSON.stringify(fetchObj),
-//         // header: {
-//         //     "Content-Type": "application/json"
-//         // }
-//     }).then(res => {
-//         console.log(res);
-//         if(res.ok) {
-//             console.log("Added comment!")
-//         } 
-//         if(err) {
-//             console.log(err);
-//         }
-//         else {
-//             alert('Failed to add comment.')
-//         }
-//     })
+        
+        console.log(idToEdit);
+        postedComments.setAttribute("style", "display: none");
+        editBlock.setAttribute("style", "display: flex");
+        // editBtn.forEach(button => button.disabled = true);
+        commitEditBtn.setAttribute('style', "display: flex");
+
+        axios.get(`/api/comments/${idToEdit}`)
+        .then((data) => {
+            const commentText = data.data.content;
+            textarea.value += commentText;
+            const useId = data.data.id;
+            console.log(data);
+            console.log(data.data.content);
+            
+            commitEditBtn.addEventListener("click", (event) => {
+                event.preventDefault();
+                const textarea = document.querySelector('#editComment');
+                const postedComments = document.querySelector('#commentContainer');
+                const editBlock = document.querySelector('#editCommentBlock');
+                const editBtn = document.querySelector('.editComBtn');
+                const idToEdit = editBtn.getAttribute('data-id');
+                
+                console.log(idToEdit);
+                postedComments.setAttribute("style", "display: flex");
+                editBlock.setAttribute("style", "display: none");
+                editBtn.setAttribute('style', "display: flex");
+                commitEditBtn.setAttribute('style', "display: none");
+                
+                const fetchObj = {
+                    content: textarea.value,
+                }
+                console.log(useId)
+                console.log("this be da fetch", fetchObj);
+                axios.put(`/api/comments/${useId}`, fetchObj)
+                .then((data) => {
+                    console.log("this be the data", data);
+                    location.reload();
+                }).catch(console.log)
+            })
+        }).catch(console.log)
+    })
+});
+
+

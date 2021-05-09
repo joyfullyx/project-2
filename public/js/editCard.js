@@ -14,15 +14,13 @@ document.querySelector('#editCardForm').addEventListener("submit", event => {
     const fetchObj = {
         event_name: eventName.value,
         event_description: eventDescription.value,
-        event_time: eventTime.value,
-        // image_path: cardImg?.value,
     }
     console.log('fetchObj: ',fetchObj)
 
     axios.put(`/api/cards/${thisPost.id}`, fetchObj)
     .then((data) => {
         console.log(data);
-        // location.reload();
+        location.reload();
     }).catch(console.log)
     // fetch('/api/cards', {
     //     method: "POST",

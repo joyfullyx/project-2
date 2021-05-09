@@ -90,18 +90,16 @@ router.post('/', withAuth, async (req, res) => {
 //Update Card
 router.put('/:id', async (req, res) => {
   try{
-    const editCard = await Card.update(
-      {
-        where: {
-          id: req.params.id,
-        }
-      },
-      {
-        event_name: req.body.event_name,
-        // event_description: req.body.event_description,
-        // event_date: req.body.event_date,
-        // event_time: req.body.event_time,
-      }
+    const editCard = await Card.findOne(
+      {  where: {id: req.params.id}  },
+      )
+      const updateCard = await editCard.update(
+          {
+            event_name: req.body.event_name,
+            event_description: req.body.event_description,
+            event_date: req.body.event_date,
+            event_time: req.body.event_time,
+          }
       )
     res.json(200).json(editCard);
     } catch (err) {
@@ -109,24 +107,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-//Update Comment Route
-router.put('/:id', async (req, res) => {
-  try{
-    const editComment = await Comment.update(
-      {
-        where: {
-          id: req.params.id,
-        }
-      },
-      {
-        content: req.body.content,
-      }
-      )
-    res.json(200).json(editComment);
-    } catch (err) {
-      res.json(err);
-    }
-});
+
 
 
 // delete card

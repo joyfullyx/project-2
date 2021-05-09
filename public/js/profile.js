@@ -51,9 +51,9 @@ editSpan.onclick = function() {
   editCardModal.style.display = "none";
 }
 
-// postbtn.onclick = function() {
-//   modal.style.display = "none";
-// }
+editCardPut.onclick = function() {
+  modal.style.display = "none";
+}
 
 // When the user clicks anywhere outside of the modal, close it
 // window.onclick = function(event) {

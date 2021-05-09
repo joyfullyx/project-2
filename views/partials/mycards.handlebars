@@ -21,12 +21,10 @@
             <form id="editCardForm">
                 <h3 id="editCardForm">Edit your card</h3>
                 <input type="text" name="name" value="{{event_name}}" id="editCardName"><br>
-                <input type="time" name="time" value="{{event_time}}" id="editCardTime"><br>
-                <input type="date" name="date" value="{{event_date}}" id="editCardDate"><br>
                 <textarea id="editCardDescription" value="{{event_description}}" data-id={{id}}></textarea><br>
                 <div id="footer">
                 {{> widget}}
-                <button id="editCardPost">Save edits</button>
+                <button id="editCardPut">Save edits</button>
                 </div>
             </form>
         </div>

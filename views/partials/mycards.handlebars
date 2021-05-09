@@ -6,8 +6,12 @@
 {{/if}}
 
 {{#each myCards}}
-<div class="myCard" id="{{id}}">
+<a class="sideCard" href="/cards/{{id}}"><div class="sideCard">
     <p>{{event_name}}</p>
+</div></a>
+<div class="sideCardPost">
+    <p>edit</p>
+    <p class="sideDelBtn" data-id={{id}}>Delete</p>
 </div>
     <div id="myCardPost">
         <p class="myCardEdit" id="editCardBtn" id="editCardBtn">edit</p>
@@ -32,7 +36,9 @@
     </div>
 {{/each}}
 
+{{/each}}
 
 
 
 <script src="/js/profile.js"></script>
+<script src="/js/mycards.js"></script>

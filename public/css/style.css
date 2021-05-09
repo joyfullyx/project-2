@@ -125,7 +125,7 @@ button {
     border-radius: 6px;
 }
 
-.myCard {
+.sideCard {
     display: table;
     border: none;
     /* padding: .5rem .8rem; */
@@ -153,7 +153,7 @@ button {
     /* 0 100px 80px rgba(0, 0, 0, 0.12); */
 }
 
-.myCard p {
+.sideCard p {
     display: table-cell;
     vertical-align: middle;
     text-align: center;
@@ -163,7 +163,12 @@ button {
     color:#23262F;
 }
 
-#myCardPost {
+.sideCard a {
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.sideCardPost {
     margin-bottom: 20px;
     display:flex;
     justify-content: space-between;
@@ -173,7 +178,7 @@ button {
     border-radius: 0 0 6px 6px;
 }
 
-#myCardPost p {
+.sideCardPost p {
     text-align: center;
     min-height: 20px;
     width: 50%;
@@ -188,7 +193,7 @@ button {
     font-weight: bold;
 }
 
-#myCardPost p:hover {
+.sideCardPost p:hover {
     background-color:#3d4354;
 }
 
@@ -401,6 +406,11 @@ button {
 .cardDelBtn {
     width: 6em;
     margin: 15px;
+}
+
+#cardImg {
+    height: 200px;
+    object-fit: contain;
 }
 
 #newComment {

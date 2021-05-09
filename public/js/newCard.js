@@ -11,7 +11,7 @@ document.querySelector('#newCardForm').addEventListener("submit", event => {
         event_name: eventName.value,
         event_description: eventDescription.value,
         event_time: eventTime.value,
-        image_path: cardImg.value,
+        image_path: cardImg?.value,
     }
     console.log('fetchObj: ',fetchObj)
 

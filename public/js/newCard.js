@@ -3,13 +3,15 @@ document.querySelector('#newCardForm').addEventListener("submit", event => {
     const eventName = document.querySelector('#newCardName');
     const eventDescription = document.querySelector('#newCardDescription');
     const eventTime = document.querySelector('#newCardTime');
-    const cardImg = document.querySelector('#uploadedImageUrl')
-    
-    const fetchObj = {     
+    let cardImg = document.querySelector('#uploadedImageUrl')
+    if (cardImg === null) {
+        cardImg = "";
+    } 
+    const fetchObj = {
         event_name: eventName.value,
         event_description: eventDescription.value,
         event_time: eventTime.value,
-        image_path: cardImg.value,
+        image_path: cardImg?.value,
     }
 
     console.log('fetchObj: ',fetchObj)

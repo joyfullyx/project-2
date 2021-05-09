@@ -58,6 +58,8 @@ delBtns2.forEach(button=> {
         })
     })
 });
+
+
 //     fetch(`/api/comments/:id`, {
 //         method: "POST",
 //         body: JSON.stringify(fetchObj),

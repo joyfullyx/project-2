@@ -4,18 +4,17 @@
 
   
 {{#each myCards}}
-<div id="myCard">
+<a class="sideCard" href="/cards/{{id}}"><div class="sideCard">
     <p>{{event_name}}</p>
-</div>
-<div id="myCardPost">
+</div></a>
+<div class="sideCardPost">
     <p>edit</p>
-    <p>delete</p>
+    <p class="sideDelBtn" data-id={{id}}>Delete</p>
 </div>
 
 {{/each}}
 
 
 
-
-
 <script src="/js/profile.js"></script>
+<script src="/js/mycards.js"></script>

@@ -10,8 +10,25 @@
     <p>{{event_name}}</p>
 </div>
     <div id="myCardPost">
-        <p class="myCardEdit" id="{{id}}">edit</p>
+        <p class="myCardEdit" id="editCardBtn" id="editCardBtn">edit</p>
         <p class="myCardDelete" id="{{id}}">delete</p>
+    </div>
+     <div id="editCardModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="editClose">&times;</span>
+            <form id="myCardEdit">
+                <h3 id="form">Edit your card</h3>
+                <input type="text" name="name" placeholder="Event Name" id="newCardName"><br>
+                <input type="time" name="time" placeholder="Enter a Time: 00:00:00" id="newCardTime"><br>
+                <input type="date" name="date" placeholder="Enter a Date: 00:00:00" id="newCardDate"><br>
+                <textarea id="newCardDescription" placeholder="Description" data-id={{id}}></textarea><br>
+                <div id="footer">
+                {{> widget}}
+                <button id="newCardPost">Save edits</button>
+                </div>
+            </form>
+        </div>
     </div>
 {{/each}}
 

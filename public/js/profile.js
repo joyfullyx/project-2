@@ -1,13 +1,12 @@
-// Get the modal
+// Get and open modal for new card
 var modal = document.getElementById("createCardModal");
-
-// Get the button that opens the modal
 var btn = document.getElementById("createCard");
 
 var postbtn = document.getElementById("newCardPost");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
+var editSpan = document.getElementsByClassName("editClose")[0];
 
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
@@ -30,6 +29,40 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+// -------------------------------------------------------------------------------------------
+
+// Get and open modal for new card
+var editCardModal = document.getElementById("editCardModal");
+var editCardBtn = document.getElementById("editCardBtn");
+var editCardPut = document.getElementById("editCardPut");
+
+// var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+editCardBtn.onclick = function() {
+  console.log('click');
+  editCardModal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+editSpan.onclick = function() {
+  console.log('edit close click');
+  editCardModal.style.display = "none";
+}
+
+// postbtn.onclick = function() {
+//   modal.style.display = "none";
+// }
+
+// When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// }
+
+// -------------------------------------------------------------------------------------------
 
 var myCard = document.getElementsByClassName("myCard")
 console.log(myCard);

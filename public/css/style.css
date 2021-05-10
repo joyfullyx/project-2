@@ -612,8 +612,14 @@ button {
     width: 80%;
     justify-content: space-between;
     align-items: stretch;
-    display: flex;
+    display: none;
     /* flex-direction: column; */
+}
+
+#editCardPut {
+    width: 30%;
+    height: 48px;
+    margin: 10px 0 10px 0;
 }
 
 #commentBlock p {

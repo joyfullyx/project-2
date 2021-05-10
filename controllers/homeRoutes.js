@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
     // var ip = "207.97.227.239";
     console.log('ip:', ip);
     // console.log('req.ip:', req.ip);
-    const geo = geoip.lookup(forwardedIpsStr || ip);
+    const geo = geoip.lookup(forwardedIpsStr);
     const lat = parseFloat(geo.ll[0]);
     const lon = parseFloat(geo.ll[1]);
     const city = geo.city;

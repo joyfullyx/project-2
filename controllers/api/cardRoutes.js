@@ -38,9 +38,9 @@ router.get('/:id', withAuth, async (req, res) => {
 router.post('/', withAuth, async (req, res) => {
   console.log('in card post');
   try {
-    const forwardedIpsStr = req.header("x-forwarded-for");
+    let forwardedIpsStr = req.header("x-forwarded-for");
 
-    const ip = '71.231.34.183';
+    let ip = '71.231.34.183';
     console.log('ip:', ip);
 
     const geo = geoip.lookup(forwardedIpsStr || ip);

@@ -9,15 +9,12 @@
         {{#if image_path}}
         <img id="cardImg" src={{image_path}} alt="image description">
         {{/if}}
-        {{#ifCond currUser user_id}}
-            <button class="cardDelBtn" data-id={{../id}}>Delete</button>
-        {{/ifCond}}
         <h6 id="date">{{event_date}}</h6>
         <p style="color:lightgrey; border-bottom: 1px dotted lightgrey; padding-bottom:0">comments</p>
             <div id="commentContainer">
             {{#each comments}}
             <div id="commentBlock">
-                <p class="username">{{user.username}}</p>
+                <p>{{user.username}}</p>
                 <p id="comCont" data-id={{id}}>{{content}}</p>
             {{#ifCond ../currUser user_id}}
                 <button class="commentDelBtn" data-id={{../id}}>Delete</button>
@@ -33,6 +30,5 @@
         <form id="newCommentForm">
         <textarea id="newComment" placeholder="Add a Comment" data-id={{id}}></textarea>
         <button><span class="material-icons">send</span></button>
-
         </form>
 </div>

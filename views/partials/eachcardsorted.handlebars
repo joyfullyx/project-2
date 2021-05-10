@@ -7,10 +7,9 @@
         </div>
     </div>
     <div class="card-body">
-        {{#if image_path}}
-        <img src={{image_path}}>
-        {{/if}}
-        <p>{{event_city}}, {{event_state}}</p>
+        <div>
+        <p id="loc">{{event_city}}, {{event_state}}</p>
+        </div>
         <p>{{event_description}}</p>
     </div>
     </a>

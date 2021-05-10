@@ -3,6 +3,7 @@ document.querySelector('#newCardForm').addEventListener("submit", event => {
     const eventName = document.querySelector('#newCardName');
     const eventDescription = document.querySelector('#newCardDescription');
     const eventTime = document.querySelector('#newCardTime');
+    const eventCat = document.querySelector('#newCardTime');
     let cardImg = document.querySelector('#uploadedImageUrl')
     if (cardImg === null) {
         cardImg = "";

@@ -9,7 +9,7 @@ A web application that uses geospatial properties to view and create local event
 ## Table of Contents
 1. [Description](#description)
 2. [Install](#installation)
-3. [Usage](#usage)
+3. [Technologies](#technologies)
 4. [Contributors](#contributing)
 5. [Test](#tests)
 6. [Username](#questions)
@@ -17,10 +17,19 @@ A web application that uses geospatial properties to view and create local event
 8. [License](#license)
 
 ## Installation
-npm i to install packages, deployed app is down. 
+If deployed application is down: 
 
-## Usage
-To make connections and build relationships within your negihborhood community
+npm i to install packages > npm run seed (to seed data) > nodemon server.js (to run local host server).
+
+## Technologies
+Express.js, Sequelize, mysql2, Node.js, cloudinary, geoip-lite, bcrypt
+
+## Link to app
+Click [here](http://oui-circle-app.herokuapp.com/) to explore the live deployed application. 
+
+![homepage]()
+![profile]()
+![card]()
 
 ## License
 

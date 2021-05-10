@@ -7,10 +7,10 @@ const { getDistanceLatLonToMiles } = require('../utils/geo');
 
 router.get("/", async (req, res) => {
   try {
-    const forwardedIpsStr = req.header("x-forwarded-for");
+    let forwardedIpsStr = req.header("x-forwarded-for");
     
     // JOY'S IP ADDRESS
-    const ip = '71.231.34.183';
+    let ip = '71.231.34.183';
     
     // TEST IP ADDRESS 
     // var ip = "207.97.227.239";

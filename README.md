@@ -27,9 +27,9 @@ Express.js, Sequelize, mysql2, Node.js, cloudinary, geoip-lite, bcrypt
 ## Link to app
 Click [here](http://oui-circle-app.herokuapp.com/) to explore the live deployed application. 
 
-![homepage]()
-![profile]()
-![card]()
+![homepage](https://raw.githubusercontent.com/joyfullyx/project-2/develop/images/homepage.png)
+![profile](https://raw.githubusercontent.com/joyfullyx/project-2/develop/images/profile.png)
+![card](https://raw.githubusercontent.com/joyfullyx/project-2/develop/images/card.png)
 
 ## License
 

@@ -14,11 +14,15 @@
             <div id="commentContainer">
             {{#each comments}}
             <div id="commentBlock">
-                <p>{{user.username}}</p>
+                <div style="display:flex">
+                <p style="color:lightgrey">{{user.username}}</p>
                 <p id="comCont" data-id={{id}}>{{content}}</p>
+                </div>
             {{#ifCond ../currUser user_id}}
+                <div style="display:flex">
                 <button class="commentDelBtn" data-id={{../id}}>Delete</button>
                 <button class="editComBtn" data-id={{../id}}>Edit</button>
+                </div>
             {{/ifCond}}
             </div>
             {{/each}}

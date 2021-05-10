@@ -1,8 +1,18 @@
 // Get and open modal for new card
 var modal = document.getElementById("createCardModal");
 var btn = document.getElementById("createCard");
-
 var postbtn = document.getElementById("newCardPost");
+
+var allBtn = document.getElementById("all");
+var eventBtn = document.getElementById("1");
+var volunteerBtn = document.getElementById("2");
+var serviceBtn = document.getElementById("3");
+var tradeBtn = document.getElementById("4");
+
+allBtn.onclick = function() {
+  allBtn.id = "test";
+}
+
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -10,7 +20,6 @@ var editSpan = document.getElementsByClassName("editClose")[0];
 
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
-    console.log('click');
   modal.style.display = "block";
 }
 

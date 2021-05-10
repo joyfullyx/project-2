@@ -10,7 +10,6 @@ const cardData = [
     event_state: 'WA',
     event_date: 'August 15, 2021',
     event_time: '06:00',
-    image_path: 'v1620275036/r2ikwku510mtv6xwjddp.jpg',
     category_id: 1,
     user_id: 3,
   },

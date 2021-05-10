@@ -1,5 +1,8 @@
 @import url("https://use.typekit.net/ofu1bcp.css");
 
+/* ------------------------------------------*/
+/* BASIC PAGE ELEMENTS ----------------------*/
+/*------------------------------------------*/
 
 body {
     background-color: #f1f1f1;
@@ -14,7 +17,6 @@ header {
     align-items: flex-end;
 }
 
-
 #header-left, #header-right {
     width: 250px;
 }
@@ -23,7 +25,12 @@ main {
     background: #f1f1f1;
 }
 
-#filterbar li {
+
+/*------------------------------------------*/
+/* FILTER BAR ------------------------------*/
+/*------------------------------------------*/
+
+.filterbar li {
     display:inline;
     color: #23262F;
     font-family: 'brandon grotesque', sans-serif;
@@ -33,15 +40,24 @@ main {
     cursor: pointer;
 }
 
-#filterbar li:hover {
+.filterbar li:hover {
     color: #c62a23;
     cursor: pointer;
-
 }
 
-#filterbar ul {
+.filterbar li:active {
+    color: #44f321;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.filterbar ul {
     padding: 50px 50px 0 50px;
 }
+
+/*------------------------------------------*/
+/* HEADER     ------------------------------*/
+/*------------------------------------------*/
 
 #nav {
     background-color: #151517;
@@ -53,14 +69,69 @@ main {
 }
 
 #logo {
-    background-image: url(../assets/circlebg.svg);
-    height: 80px;
-    width: 230px;
+    /* background-image: url(../assets/circlebg.svg); */
+    height: 6em;
+    width: 20em;
     background-repeat: no-repeat;
     text-align: center;
     color: #23262F;
     position: relative;
     bottom: -1px;
+    /* border:2px solid pink; */
+}
+
+#logo a {
+    position: absolute;
+    width: 20em;
+    height: 6em;
+    z-index: 3;
+    text-align: center;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:0;
+    padding:0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-decoration: none;
+}
+
+.halfCircle {
+    height: 4.5em;
+    width: 16.5em;
+    position: absolute;
+    margin-left:auto;
+    margin-right:auto;
+    z-index: 1;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+.color {
+    height: 8em;
+    width: 20em;
+    position: absolute;
+    mix-blend-mode: screen;
+    z-index: 0;
+    clip-path: polygon(0% 0, 100% 0%, 100% 80%, 0% 80%);
+}
+
+.color2 {
+    height: 8em;
+    width: 20em;
+    position: absolute;
+    mix-blend-mode: screen;
+    z-index: 0;    
+    clip-path: polygon(0% 0, 100% 0%, 100% 80%, 0% 80%);
+}
+
+.color2 img {
+    width:100%;
+}
+.color img {
+    width:100%;
 }
 
 #logo H1 {
@@ -68,21 +139,22 @@ main {
     font-size: 2.2em;
     font-family: 'brandon grotesque', sans-serif;
     font-weight: bold;
-    position: absolute;
-    bottom: 12px;
+    /* position: absolute; */
+    bottom: 0;
     text-align: center;
-    left: 50px;
+    /* left: 50%; */
     color:#c62a23;
 }
+
 #logo H3 {
     /* position: relative; */
     font-size: .7em;
     font-family: 'brandon grotesque', sans-serif;
     font-weight: bold;
-    position: absolute;
+    /* position: absolute; */
     bottom: 0px;
     text-align: center;
-    left: 50px;
+    /* left: 50px; */
     color:#c62a23;
 }
 
@@ -125,6 +197,10 @@ button {
     border-radius: 6px;
 }
 
+/*------------------------------------------*/
+/* SIDE BAR   ------------------------------*/
+/*------------------------------------------*/
+
 .sideCard {
     display: table;
     border: none;
@@ -146,11 +222,7 @@ button {
     border-radius: 6px 6px 0 0;
     box-shadow:
     0 2.8px 2.2px rgba(0, 0, 0, 0.5),
-    /* /* 0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-    0 12.5px 10px rgba(0, 0, 0, 0.06), */
-    /* 0 22.3px 17.9px rgba(0, 0, 0, 0.072), */
     0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    /* 0 100px 80px rgba(0, 0, 0, 0.12); */
 }
 
 .sideCard p {
@@ -196,6 +268,8 @@ button {
 .sideCardPost p:hover {
     background-color:#3d4354;
 }
+
+
 
 #mainDiv {
     /* background-color:pink; */
@@ -250,13 +324,14 @@ button {
     width: 250px;
     height: 160px;
     margin: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 0;
     border-radius: 6px;
     background-color: white;
     display: flex;
     position: relative;
     flex-direction: column;
     overflow: hidden;
+
     box-shadow:
     0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048),
@@ -279,26 +354,39 @@ button {
   } 
 
   #info {
-    border-top: 1px dotted #bdbdbd;
     bottom: 0;
     right: 0;
     width: 100%;
-    height: 2em;
+    height: 1.5em;
     position: absolute;
     z-index: 11;
+    border-radius: 0 0 6px 6px;
+    background-color: #23262F;
   }
 
-.card h3 {
+.card-header h3 {
     font-family: 'brandon grotesque', sans-serif;
+    font-weight: bold;
     font-size: .9em;
     color:#23262F;
-    background-color: rgb(224, 224, 224);
-    border-radius: 6px 6px 0px 0px;
-    padding: 5px 5px 5px 20px;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px 10px 5px 20px;
     height: 35px;
     line-height: 1.2;
     /* display: inline-block; */
-    vertical-align: middle;
+    /* vertical-align: middle;
+    display: inline-block; */
+}
+
+#time p {
+    text-transform: uppercase;
+    font-size: .2em;
+    background-color: #23262F;
+    color:#888888;
+    font-weight: bold;
+    padding: 0px 5px 0px 5px;
+    margin:0;
 }
 
 .card p {
@@ -318,18 +406,48 @@ button {
 }
 
 .card-header {
-    display:flex;
+    display:table;
     flex-direction:column;
     justify-content:center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 6px 6px 0px 0px;
+    width: 100%;
+    border-bottom: 1px dotted lightgrey;
+}
+
+#commentBlock p {
+    display: inline-block;
+}
+
+.username {
+    color:#c4c4c4 !important;
+}
+
+.row {
+    display: table-row;
+}
+
+.card-body img {
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    display: table-column;
+    vertical-align: middle;
 }
 
 #time {
     /* display: none; */
     font-family: 'brandon grotesque', sans-serif;
-    font-size: .6em;
-    padding-top: 10px;
+    padding-top: 6px;
     padding-left: 20px;
-    color: #bdbdbd;
+    font-size: .6em;
+    color: #888888;
+}
+
+#loc {
+    font-size:.6em;
+    text-transform: uppercase;
+    border-bottom: 1px dotted lightgrey;
 }
 
 #date {
@@ -439,7 +557,8 @@ button {
     font-size: .6em;
     padding: 0;
     margin:0;
-
+    border-radius: 6px 0 0 6px;
+    align-self: center;
 }
 
 .editComBtn {
@@ -453,22 +572,24 @@ button {
     font-size: .6em;
     padding: 0;
     margin:0;
-
+    border-radius: 0 6px 6px 0;
+    align-self: center;
 }
 
 .editComBtnCommit {
     display: none;
-    width: 6em;
-    height: 2.2em;
-    margin: 15px;
-    border: 1px solid #e0e0e0;
-    color:rgb(132, 132, 132);
-    background-color:white;
+    width: 5em;
+    /* height: 2.2em; */
+    border: 1px solid rgb(140, 140, 140);
+    color:rgb(140, 140, 140);
+    background-color:rgb(240, 240, 240);
     font-family: 'brandon grotesque', sans-serif;
     font-size: .6em;
     padding: 0;
-    margin:0;
-
+    margin:5px 0 5px 0px;
+    line-height: 6em;
+    justify-content: center;
+    border-radius: 0px 6px 6px 0px;
 }
 
 #commentBlock {
@@ -479,20 +600,34 @@ button {
     /* flex-direction: column; */
 }
 
+#editComment {
+    border-radius: 6px 0 0 6px;
+    margin-right: 0px;
+}
+
 #editCommentBlock {
     padding: 5px 10px 0px 30px;
     border-top: 1px dotted lightgrey;
     display: none;
+    width: 80%;
     justify-content: space-between;
+    align-items: stretch;
+    display: none;
     /* flex-direction: column; */
+}
+
+#editCardPut {
+    width: 30%;
+    height: 48px;
+    margin: 10px 0 10px 0;
 }
 
 #commentBlock p {
     color: rgb(132, 132, 132);
     font-size: .8em;
     line-height: 1.5em;
-    width:85%;
-    padding: 5px 0 10px 0;
+    /* width: 85%; */
+    padding: 5px 10px 10px 0px;
     /* margin: 0; */
 }
 
@@ -584,6 +719,21 @@ button {
     margin-bottom:5px;
 }
 
+
+
+/* nav ul {
+    display: inline;
+}
+nav li {
+    display: inline;
+} */
+
+
+
+/* ------------------------------------------- */
+/*  MY CARD STYLING
+/* ------------------------------------------- */
+
 .mycard {
     width: 180px;
     height: 40px;
@@ -592,37 +742,36 @@ button {
     background-color: #23262F;
 }
 
-nav ul {
-    display: inline;
-}
-nav li {
-    display: inline;
-}
+
+
+
+
+
 
 
 /* ------------------------------------------- */
-/* MODAL STYLING */
-/* The Modal (background) */
+/*  MODAL
+/* ------------------------------------------- */
+
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 12; /* Sit on top */
+    display: none; 
+    position: fixed; 
+    z-index: 12;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
   }
-  
-  /* Modal Content/Box */
-  .modal-content {
+
+.modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 60%; /* Could be more or less, depending on screen size */
+    width: 60%; 
     border-radius: 6px;
   }
   
@@ -655,18 +804,26 @@ nav li {
     text-decoration: none;
     cursor: pointer;
   }
+
+
+/* ------------------------------------------- */
+/*  FORMS
 /* ------------------------------------------- */
 
-
-  /*  Form styling  */
   button, input, select, textarea {
     font-family: inherit;
     font-size: 100%;
   }
 
   input, textarea, select {
-    width : 80%;
+    font-family: 'brandon grotesque', sans-serif;
+    width : 100%;
     padding: 5px 5px 5px 5px;
     margin:  5px 0 5px 0;
     box-sizing: border-box;
+    border-radius: 6px;
+    border:1px solid rgb(140, 140, 140);
   }
+
+  /* ----------------------------------------- */
+

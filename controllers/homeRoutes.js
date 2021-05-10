@@ -4,44 +4,30 @@ const withAuth = require("../utils/auth");
 const geoip = require("geoip-lite");
 const sequelize = require("sequelize");
 const { getDistanceLatLonToMiles } = require('../utils/geo');
-// let http = require('http').Server(router);
-// let ip;
 
 router.get("/", async (req, res) => {
   try {
-    const forwardedIpsStr = req.header("x-forwarded-for");
-    // var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    // ip = req.ip;
+    let forwardedIpsStr = req.header("x-forwarded-for");
     
     // JOY'S IP ADDRESS
-    const ip = '71.231.34.183';
+    let ip = '71.231.34.183';
     
     // TEST IP ADDRESS 
     // var ip = "207.97.227.239";
     console.log('ip:', ip);
     // console.log('req.ip:', req.ip);
-    const geo = geoip.lookup(forwardedIpsStr || ip);
+    const geo = geoip.lookup(forwardedIpsStr);
     const lat = parseFloat(geo.ll[0]);
     const lon = parseFloat(geo.ll[1]);
     const city = geo.city;
     const state = geo.region;
     console.log('city, state: ', city, state, lat, lon);
-    // console.log('geo:', geo);
-    // =========================================================
-    // console.log('req.connection.remoteAddress:', req.connection.remoteAddress)
     console.log('The IP is %s', geoip.pretty(ip));
     // =========================================================
     if (forwardedIpsStr) {
       ip = forwardedIps = forwardedIpsStr.split(",")[0];
     }
-    // const userData = await User.findByPk(req.session.user_id, {
-    //   attributes: {
-    //     exclude: ['password']
-    //   },
-    // })
 
-    // const user = await userData.get({ plain: true });
-    // Get all categories and JOIN with user data
     const cardData = await Card.findAll(req.params.id, {
       include: [
         {
@@ -50,8 +36,6 @@ router.get("/", async (req, res) => {
         }
       ]
     });
-    // // Serialize data so the template can read it
-    // const card = cardData.map((card) => card.get({ plain: true }));
 
     const cards = cardData.filter((card) => {
       console.log('distance between ip and event in miles: ',(getDistanceLatLonToMiles(
@@ -71,9 +55,6 @@ router.get("/", async (req, res) => {
         return card.get({ plain: true });
     });
     const allCards = cards.map((card) => card.get({plain: true}));
-    console.log("cards: ", allCards);
-
-    // console.log('cardData: ', cardData)
 
 //     // Pass serialized data and session flag into template
     if(req.session.logged_in){
@@ -82,8 +63,8 @@ router.get("/", async (req, res) => {
     res.render("homepage", { card: allCards});
   } catch (err) {
     res.status(500).json(err);
-    console.log(err);
-  }});
+  }
+});
 
 
 router.get('/cards/:id', async (req, res) => {
@@ -100,10 +81,8 @@ router.get('/cards/:id', async (req, res) => {
       const card = cardData.get({ plain: true });
   
       res.render('viewcard', {card: card});
-      console.log("it lives")
     } catch (err) {
       res.status(500).json(err);
-      console.log(err);
     } 
   } 
   else {
@@ -123,16 +102,17 @@ router.get('/cards/:id', async (req, res) => {
         ],
       });
       const card = cardData.get({ plain: true });
-      // const commentData = await Comment.findByPk(req.params.id);
-      // if(commentData){
-        // const comment = commentData.get({ plain: true});
-        res.render('viewcard', {...user, ...card, card: card, logged_in: req.session.logged_in, currUser: req.session.user_id});
-      // } else {
-      //   res.render('viewcard', {...card, card: card, ...user, ...comment, logged_in: req.session.logged_in});
-      // }
+
+        res.render('viewcard', {
+          ...user, 
+          ...card, 
+          card: card, 
+          logged_in: req.session.logged_in, 
+          currUser: req.session.user_id
+        });
+ 
     } catch (err) {
         res.status(500).json(err);
-        console.log(err);
       }
   }
 });
@@ -149,14 +129,12 @@ router.get('/categories/:id', async (req, res) => {
       });
       
       const category = categoryData.get({ plain: true });
-      console.log(category);
       res.render('category', {
         ...category,
         logged_in: req.session.logged_in
       });
     } catch (err) {
       res.status(500).json(err);
-      console.log(err);
     }
   } 
   else {
@@ -178,7 +156,6 @@ router.get('/categories/:id', async (req, res) => {
       });
       
       const category = categoryData.get({ plain: true });
-      console.log(category);
       res.render('category', {
         ...category,
         ...user,
@@ -186,7 +163,6 @@ router.get('/categories/:id', async (req, res) => {
       });
     } catch (err) {
       res.status(500).json(err);
-      console.log(err);
     }
   }
   }
@@ -207,9 +183,6 @@ router.get('/profile', withAuth, async(req, res) => {
     var lon = parseFloat(geo.ll[1]);
     var city = geo.city;
     var state = geo.region;
-    console.log('city, state: ', city, state, lat, lon);
-    console.log('The IP is %s', geoip.pretty(ip));
-
 
     const userData = await User.findByPk(req.session.user_id, {
       attributes: {
@@ -244,7 +217,6 @@ router.get('/profile', withAuth, async(req, res) => {
     });
     const allCards = cards.map((card) => card.get({plain: true}));
     const filterCards = allCards.filter(card => card.user_id == req.session.user_id);
-    console.log("cards: ", allCards);
     res.render('profile', {
       card: allCards,
       myCards: filterCards,
@@ -254,7 +226,6 @@ router.get('/profile', withAuth, async(req, res) => {
     })
   } catch (err) {
     res.status(500).json(err);
-    console.log(err);
   }
 });
 

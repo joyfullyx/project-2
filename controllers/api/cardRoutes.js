@@ -5,17 +5,14 @@ const geoip = require('geoip-lite');
 
 // find all cards
 router.get('/', withAuth, async (req, res) => {
-    console.log(req);
     try {
         const cardData = await Card.findAll({
             include: [{ model: Comment}, {model: User}, {model: Category}],
         });
         const allCards = cardData.map((card) => card.get({plain: true}));
         res.status(200).json(allCards);
-        console.log(allCards);
     } catch (err) {
         res.status(500).json(err);
-        console.log(err);
     }
 });
 
@@ -34,19 +31,16 @@ router.get('/:id', withAuth, async (req, res) => {
     res.status(200).json(allCards);
   } catch (err) {
     res.status(500).json(err);
-    console.log(err);
   }
-})
-
-
+});
 
 // create new card
 router.post('/', withAuth, async (req, res) => {
   console.log('in card post');
   try {
-    const forwardedIpsStr = req.header("x-forwarded-for");
+    let forwardedIpsStr = req.header("x-forwarded-for");
 
-    const ip = '71.231.34.183';
+    let ip = '71.231.34.183';
     console.log('ip:', ip);
 
     const geo = geoip.lookup(forwardedIpsStr || ip);
@@ -60,10 +54,6 @@ router.post('/', withAuth, async (req, res) => {
       ip = forwardedIps = forwardedIpsStr.split(",")[0];
     }
 
-    debugger
-    console.log(req.body)
-    console.log(req.body.event_name)
-
     const newCard = await Card.create({
       event_name: req.body.event_name,
       event_city: city,
@@ -75,15 +65,11 @@ router.post('/', withAuth, async (req, res) => {
       image_path: req.body.image_path,
       user_id: req.session.user_id,
     });
-    console.log("newcard: ", newCard);
-
 
     const card = newCard.get({ plain: true });
-    console.log('logging new card: ', card);
     res.status(200).json(card);
   } catch (err) {
     res.status(400).json(err);
-    console.log(err);
   }
 });
 
@@ -93,7 +79,7 @@ router.put('/:id', async (req, res) => {
     const editCard = await Card.findOne(
       {  where: {id: req.params.id}  },
       )
-      const updateCard = await editCard.update(
+      await editCard.update(
           {
             event_name: req.body.event_name,
             event_description: req.body.event_description,
@@ -106,9 +92,6 @@ router.put('/:id', async (req, res) => {
       res.json(err);
     }
 });
-
-
-
 
 // delete card
 router.delete('/:id', withAuth, async (req, res) => {

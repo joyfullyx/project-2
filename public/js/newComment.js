@@ -1,4 +1,3 @@
-// const { json } = require("sequelize/types");
 const newComment = document.querySelector('#newCommentForm');
 const delComBtns = document.querySelectorAll(".commentDelBtn");
 const delCardBtns = document.querySelectorAll(".cardDelBtn");
@@ -18,22 +17,18 @@ newComment.addEventListener("submit", event => {
         location.reload();
     }).catch(console.log)
 });
+
 //Buttons for deleting comments
 delComBtns.forEach(button=> {
     button.addEventListener("click", (event) => {
         event.preventDefault();
         const idToDel = button.getAttribute('data-id');
-        console.log(idToDel)
         fetch(`/api/comments/${idToDel}`, {
             method: "DELETE"
         }).then(res => {
-            console.log(res);
-            console.log(idToDel)
         if(!res.ok) {
             alert("No comment to delete")
-            console.log(res)
         } else {
-            alert("Congrats you played yaself")
         }
         location.reload();
         })
@@ -52,14 +47,13 @@ delCardBtns.forEach(button=> {
         if(!res.ok) {
             alert("No card to delete")
         } else {
-            console.log(res)
             location.replace('/profile');
-            alert("Congrats you played yaself")
         }
         })
     })
 });
 
+// --Edit Comment Buttons
 editComBtns.forEach(button => {
     button.addEventListener("click", (event) => {
         event.preventDefault();
@@ -67,13 +61,9 @@ editComBtns.forEach(button => {
         const postedComments = document.querySelector('#commentContainer');
         const editBlock = document.querySelector('#editCommentBlock');
         const idToEdit = button.getAttribute('data-id');
-        const editBtn = document.querySelectorAll('.editComBtn');
 
-        
-        console.log(idToEdit);
         postedComments.setAttribute("style", "display: none");
         editBlock.setAttribute("style", "display: flex");
-        // editBtn.forEach(button => button.disabled = true);
         commitEditBtn.setAttribute('style', "display: flex");
 
         axios.get(`/api/comments/${idToEdit}`)
@@ -101,8 +91,6 @@ editComBtns.forEach(button => {
                 const fetchObj = {
                     content: textarea.value,
                 }
-                console.log(useId)
-                console.log("this be da fetch", fetchObj);
                 axios.put(`/api/comments/${useId}`, fetchObj)
                 .then((data) => {
                     console.log("this be the data", data);
@@ -113,6 +101,8 @@ editComBtns.forEach(button => {
     })
 });
 
+
+// --If Conditional to show Edit/Delete Buttons on individual cards
 Handlebars.registerHelper('ifCond', function(currUser, cardUser, options) {
     if(currUser === cardUser) {
       return options.fn(this);

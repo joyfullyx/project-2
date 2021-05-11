@@ -19,7 +19,7 @@ A web application that uses geospatial properties to view and create local event
 ## Installation
 If deployed application is down: 
 
-npm i to install packages > npm run seed (to seed data) > nodemon server.js (to run local host server).
+npm i to install packages > create database in mysql workbench > npm run seed (to seed data) > nodemon server.js (to run local host server).
 
 ## Technologies
 Express.js, Sequelize, mysql2, Node.js, cloudinary, geoip-lite, bcrypt
